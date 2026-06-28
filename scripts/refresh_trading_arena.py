@@ -4,6 +4,8 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
+import re
 import subprocess
 import sys
 from datetime import date, datetime
@@ -14,6 +16,8 @@ ROOT = Path(__file__).resolve().parents[1]
 QUANT_DIR = Path("~/AI-workplace/quant-learning").expanduser()
 QUANT_PYTHON = QUANT_DIR / "venv" / "bin" / "python"
 QUANT_DB = QUANT_DIR / "data" / "trading_arena.db"
+OPENCLAW_INVESTMENTS = Path("~/.openclaw/workspace-explorer/investments").expanduser()
+MAX_AI_ANALYSIS_AGE_DAYS = 10
 EXPECTED_SOURCES = {
     "quant_learning",
     "ai_analyst",
@@ -41,14 +45,87 @@ def build_data(end: str) -> None:
     run([sys.executable, "scripts/build_trading_arena_data.py", "--end", end], cwd=ROOT)
 
 
-def validate_outputs() -> None:
-    for filename in ["strategies.json", "signals.json", "equity_curve.json", "holdings.json"]:
-        path = ROOT / "data" / filename
-        rows = json.loads(path.read_text(encoding="utf-8"))
-        sources = {row.get("source") for row in rows if isinstance(row, dict)}
-        missing = EXPECTED_SOURCES - sources
-        if missing:
-            raise RuntimeError(f"{filename} missing sources: {sorted(missing)}")
+def load_output(filename: str) -> list[dict]:
+    path = ROOT / "data" / filename
+    rows = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(rows, list):
+        raise RuntimeError(f"{filename} must contain a JSON list")
+    return rows
+
+
+def assert_complete_sources(filename: str, rows: list[dict]) -> None:
+    sources = {row.get("source") for row in rows if isinstance(row, dict)}
+    missing = EXPECTED_SOURCES - sources
+    if missing:
+        raise RuntimeError(f"{filename} missing sources: {sorted(missing)}")
+
+
+def assert_valid_number(filename: str, row: dict, field: str) -> None:
+    value = row.get(field)
+    if value is None or not isinstance(value, (int, float)) or math.isnan(float(value)) or math.isinf(float(value)):
+        raise RuntimeError(f"{filename} has invalid {field}: {row}")
+
+
+def assert_numeric_quality(filename: str, rows: list[dict]) -> None:
+    required = {
+        "signals.json": ["price", "shares", "amount", "cash_after"],
+        "equity_curve.json": ["total_value", "cash", "positions_value", "total_cost", "return_pct"],
+        "holdings.json": ["shares", "cost_price", "current_price", "value", "profit_loss", "return_pct"],
+    }.get(filename, [])
+    for row in rows:
+        if not isinstance(row, dict):
+            raise RuntimeError(f"{filename} contains a non-object row: {row!r}")
+        for field in required:
+            assert_valid_number(filename, row, field)
+
+
+def assert_equity_dates(equity_rows: list[dict]) -> None:
+    latest_by_source = {}
+    for row in equity_rows:
+        source = row.get("source")
+        row_date = row.get("date")
+        if source and row_date:
+            latest_by_source[source] = max(latest_by_source.get(source, row_date), row_date)
+    if set(latest_by_source) != EXPECTED_SOURCES:
+        raise RuntimeError(f"Unexpected equity sources: {latest_by_source}")
+    latest_dates = set(latest_by_source.values())
+    if len(latest_dates) != 1:
+        raise RuntimeError(f"Equity latest dates are not aligned: {latest_by_source}")
+
+
+def latest_stock_analysis_date() -> date | None:
+    latest: date | None = None
+    for path in OPENCLAW_INVESTMENTS.glob("stock_analysis_*.json"):
+        match = re.search(r"(\d{4}-\d{2}-\d{2})", path.name)
+        if not match:
+            continue
+        parsed = datetime.strptime(match.group(1), "%Y-%m-%d").date()
+        latest = parsed if latest is None else max(latest, parsed)
+    return latest
+
+
+def assert_ai_analysis_fresh(end: str) -> None:
+    latest = latest_stock_analysis_date()
+    if latest is None:
+        raise RuntimeError("No stock_analysis_*.json files found for AI Analyst")
+    end_day = datetime.strptime(end, "%Y-%m-%d").date()
+    age = (end_day - latest).days
+    if age > MAX_AI_ANALYSIS_AGE_DAYS:
+        raise RuntimeError(
+            f"Latest AI Analyst stock_analysis is stale: {latest.isoformat()} ({age} days old)"
+        )
+
+
+def validate_outputs(end: str) -> None:
+    outputs = {
+        filename: load_output(filename)
+        for filename in ["strategies.json", "signals.json", "equity_curve.json", "holdings.json"]
+    }
+    for filename, rows in outputs.items():
+        assert_complete_sources(filename, rows)
+        assert_numeric_quality(filename, rows)
+    assert_equity_dates(outputs["equity_curve.json"])
+    assert_ai_analysis_fresh(end)
     print("Trading Arena output validation passed.")
 
 
@@ -65,7 +142,7 @@ def main() -> None:
     if not args.skip_quant:
         refresh_quant_learning(args.end)
     build_data(args.end)
-    validate_outputs()
+    validate_outputs(args.end)
 
 
 if __name__ == "__main__":

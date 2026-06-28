@@ -438,7 +438,7 @@ def build_ai_analyst(prices: pd.DataFrame, items: list[dict[str, Any]]) -> tuple
             px = price_on(prices, ticker, day_str, stock_price_hint(stock))
             if not px:
                 continue
-            reason = analysis_reason(stock)
+            reason = analysis_reason(stock, action)
             if action == "buy" and cash > 1:
                 amount = min(cash * 0.30, cash)
                 shares = amount / px
@@ -467,17 +467,75 @@ def build_ai_analyst(prices: pd.DataFrame, items: list[dict[str, Any]]) -> tuple
     return signals, equity, holdings_rows
 
 
-def analysis_reason(stock: dict[str, Any]) -> str:
+def translate_signal_text(value: Any) -> str | None:
+    if value is None:
+        return None
+    text = str(value).strip()
+    if not text:
+        return None
+    mapping = [
+        ("强烈买入", "strong buy"),
+        ("买入", "buy"),
+        ("加仓", "add"),
+        ("卖出", "sell"),
+        ("减仓", "reduce"),
+        ("清仓", "exit"),
+        ("持有", "hold"),
+        ("观望", "watch"),
+        ("强势多头", "strong bullish trend"),
+        ("多头排列", "bullish alignment"),
+        ("弱势多头", "weak bullish trend"),
+        ("强势空头", "strong bearish trend"),
+        ("空头排列", "bearish alignment"),
+        ("弱势空头", "weak bearish trend"),
+        ("震荡", "range-bound"),
+        ("高", "high"),
+        ("中", "medium"),
+        ("低", "low"),
+    ]
+    for chinese, english in mapping:
+        if chinese in text:
+            return english
+    if text.isascii():
+        return text
+    return None
+
+
+def analysis_reason(stock: dict[str, Any], action: str) -> str:
     ai = stock.get("ai_analysis") or {}
     tech = stock.get("technical_indicators") or {}
     analysis = stock.get("analysis") or {}
-    parts = [
-        ai.get("analysis_summary"),
-        analysis.get("reason"),
-        "; ".join(tech.get("signal_reasons") or []),
-    ]
-    reason = " | ".join(str(p) for p in parts if p)
-    return reason[:240] or "OpenClaw AI analyst signal"
+    parts = [f"OpenClaw weekly analysis: {action.upper()} signal"]
+
+    advice = translate_signal_text(ai.get("operation_advice") or analysis.get("suggestion"))
+    if advice:
+        parts.append(f"advice={advice}")
+
+    technical_signal = translate_signal_text(tech.get("buy_signal"))
+    if technical_signal:
+        parts.append(f"technical={technical_signal}")
+
+    trend = translate_signal_text(tech.get("trend_status"))
+    if trend:
+        parts.append(f"trend={trend}")
+
+    score = tech.get("signal_score") or analysis.get("score")
+    if isinstance(score, (int, float)):
+        parts.append(f"score={score:.0f}/100")
+
+    confidence = translate_signal_text(ai.get("confidence_level"))
+    if confidence:
+        parts.append(f"confidence={confidence}")
+
+    target = ai.get("target_price") or analysis.get("target_price_suggested")
+    if target not in (None, ""):
+        parts.append(f"target={target}")
+
+    stop_loss = ai.get("stop_loss") or analysis.get("stop_loss")
+    if stop_loss not in (None, ""):
+        parts.append(f"stop={stop_loss}")
+
+    return "; ".join(parts)[:240]
 
 
 def signal_row(source: str, day: str, strategy: str, action: str, ticker: str, price: float, shares: float, amount: float, cash: float, reason: str) -> dict[str, Any]:
