@@ -468,9 +468,9 @@
     "total_value": 10546.069412205248
   },
   {
-    "cash": 7.172482459901723,
+    "cash": 5.379361844926298,
     "date": "2026-06-26",
-    "positions_value": 10598.720196575077,
+    "positions_value": 10600.513317190052,
     "return_pct": -0.035827938269547305,
     "source": "quant_learning",
     "total_cost": 11000.0,

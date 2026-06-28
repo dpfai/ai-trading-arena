@@ -963,13 +963,13 @@
   },
   {
     "action": "buy",
-    "amount": 2.390827486633902,
-    "cash_after": 7.172482459901706,
+    "amount": 1.7931206149754264,
+    "cash_after": 5.3793618449262794,
     "date": "2026-06-26",
     "id": "ql_20260626_SMH_buy",
     "price": 611.6099853515625,
     "reason": "votes bull=2 bear=0; {'ma20_50': 1, 'rsi_30_70': 0, 'bollinger_2std': 0, 'ml_direction': 1}",
-    "shares": 0.003909072029390787,
+    "shares": 0.00293180402204309,
     "source": "quant_learning",
     "strategy": "four_vote_composite",
     "ticker": "SMH"
@@ -989,15 +989,28 @@
   },
   {
     "action": "buy",
-    "amount": 3.187769982178536,
-    "cash_after": 9.563309946535608,
+    "amount": 2.390827486633902,
+    "cash_after": 7.172482459901706,
     "date": "2026-06-26",
     "id": "ql_20260626_VGT_buy",
     "price": 113.86000061035156,
     "reason": "votes bull=2 bear=0; {'ma20_50': 1, 'rsi_30_70': 0, 'bollinger_2std': 0, 'ml_direction': 1}",
-    "shares": 0.02799727705155765,
+    "shares": 0.020997957788668236,
     "source": "quant_learning",
     "strategy": "four_vote_composite",
     "ticker": "VGT"
+  },
+  {
+    "action": "buy",
+    "amount": 3.187769982178536,
+    "cash_after": 9.563309946535608,
+    "date": "2026-06-26",
+    "id": "ql_20260626_VOO_buy",
+    "price": 670.260009765625,
+    "reason": "votes bull=2 bear=0; {'ma20_50': 1, 'rsi_30_70': 0, 'bollinger_2std': 0, 'ml_direction': 1}",
+    "shares": 0.004756019956036506,
+    "source": "quant_learning",
+    "strategy": "four_vote_composite",
+    "ticker": "VOO"
   }
 ]
