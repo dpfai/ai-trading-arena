@@ -184,6 +184,59 @@ def normalize_contributed_cost(equity: list[dict[str, Any]]) -> list[dict[str, A
     return normalized
 
 
+def rebuild_quant_learning(
+    signals: list[dict[str, Any]],
+    prices: pd.DataFrame,
+) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+    """Rebuild QuantAI holdings/equity from signals so stale DB snapshots do not leak in."""
+    equity: list[dict[str, Any]] = []
+    holdings_rows: list[dict[str, Any]] = []
+    positions: dict[str, dict[str, float]] = defaultdict(lambda: {"shares": 0.0, "cost": 0.0})
+    by_day: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    for signal in signals:
+        by_day[signal["date"]].append(signal)
+
+    cash = INITIAL_CASH
+    total_contributed = INITIAL_CASH
+    for i, day in enumerate(trading_days(prices, START_DATE)):
+        day_str = iso_day(day)
+        if i > 0 and day.weekday() == DCA_WEEKDAY:
+            cash += WEEKLY_CONTRIBUTION
+            total_contributed += WEEKLY_CONTRIBUTION
+
+        for signal in sorted(by_day.get(day_str, []), key=lambda r: r["id"]):
+            ticker = signal["ticker"]
+            price = float(signal.get("price") or price_on(prices, ticker, day_str) or 0)
+            shares = float(signal.get("shares") or 0)
+            amount = float(signal.get("amount") or shares * price)
+            if signal["action"] == "buy" and shares > 0:
+                positions[ticker]["shares"] += shares
+                positions[ticker]["cost"] += amount
+                cash -= amount
+            elif signal["action"] == "sell" and shares > 0 and positions[ticker]["shares"] > 0:
+                old_shares = positions[ticker]["shares"]
+                sold_shares = min(shares, old_shares)
+                cost_reduction = positions[ticker]["cost"] * (sold_shares / old_shares)
+                positions[ticker]["shares"] -= sold_shares
+                positions[ticker]["cost"] -= cost_reduction
+                cash += amount
+                if positions[ticker]["shares"] <= 1e-10:
+                    positions[ticker] = {"shares": 0.0, "cost": 0.0}
+
+        positions_value = 0.0
+        for ticker, pos in sorted(positions.items()):
+            if pos["shares"] <= 0:
+                continue
+            px = price_on(prices, ticker, day_str)
+            if not px:
+                continue
+            positions_value += pos["shares"] * px
+            holdings_rows.append(holding_row(day_str, "quant_learning", ticker, pos["shares"], pos["cost"], px))
+        equity.append(equity_row(day_str, "quant_learning", cash + positions_value, cash, positions_value, total_contributed))
+
+    return equity, holdings_rows
+
+
 def build_spy(prices: pd.DataFrame) -> tuple[list[dict[str, Any]], list[dict[str, Any]], list[dict[str, Any]]]:
     signals: list[dict[str, Any]] = []
     equity: list[dict[str, Any]] = []
@@ -233,6 +286,9 @@ def build_etf(prices: pd.DataFrame) -> tuple[list[dict[str, Any]], list[dict[str
             continue
         txs = sorted(portfolio.get("transactions", []), key=lambda t: (t.get("date", ""), t.get("etf", "")))
         positions: dict[str, dict[str, float]] = defaultdict(lambda: {"shares": 0.0, "cost": 0.0})
+        cash = INITIAL_CASH
+        total_contributed = INITIAL_CASH
+        contributed_dates: set[str] = set()
         tx_index = 0
         for day in days:
             day_str = iso_day(day)
@@ -243,13 +299,17 @@ def build_etf(prices: pd.DataFrame) -> tuple[list[dict[str, Any]], list[dict[str
                 tx_price = float(tx.get("price") or 0)
                 shares = float(tx.get("shares") or (amount / tx_price if tx_price else 0))
                 if ticker and amount > 0 and shares > 0:
+                    if tx.get("type") == "weekly_investment" and tx["date"] not in contributed_dates:
+                        cash += WEEKLY_CONTRIBUTION
+                        total_contributed += WEEKLY_CONTRIBUTION
+                        contributed_dates.add(tx["date"])
                     positions[ticker]["shares"] += shares
                     positions[ticker]["cost"] += amount
-                    signals.append(signal_row(source, tx["date"], "dca", "buy", ticker, tx_price, shares, amount, 0.0, tx.get("type", "ETF DCA")))
+                    cash -= amount
+                    signals.append(signal_row(source, tx["date"], "dca", "buy", ticker, tx_price, shares, amount, cash, tx.get("type", "ETF DCA")))
                 tx_index += 1
 
             positions_value = 0.0
-            total_cost = 0.0
             for ticker, pos in sorted(positions.items()):
                 if pos["shares"] <= 0:
                     continue
@@ -257,10 +317,9 @@ def build_etf(prices: pd.DataFrame) -> tuple[list[dict[str, Any]], list[dict[str
                 if not px:
                     continue
                 positions_value += pos["shares"] * px
-                total_cost += pos["cost"]
                 holdings_rows.append(holding_row(day_str, source, ticker, pos["shares"], pos["cost"], px))
-            if total_cost > 0:
-                equity.append(equity_row(day_str, source, positions_value, 0.0, positions_value, total_cost))
+            if positions_value > 0:
+                equity.append(equity_row(day_str, source, cash + positions_value, cash, positions_value, total_contributed))
 
     return signals, equity, holdings_rows
 
@@ -504,11 +563,12 @@ def main() -> None:
     end = parse_day(args.end)
 
     analysis_items = load_analysis_items()
-    tickers = {"SPY", "VOO", "VGT", "SMH"}
+    tickers = {"SPY", "QQQ", "VOO", "VGT", "SMH"}
     tickers.update(item.get("code") for item in analysis_items if item.get("code"))
     prices = download_closes(tickers, START_DATE, end)
 
-    q_signals, q_equity, q_holdings = load_quant_learning()
+    q_signals, _q_equity, _q_holdings = load_quant_learning()
+    q_equity, q_holdings = rebuild_quant_learning(q_signals, prices)
     spy_signals, spy_equity, spy_holdings = build_spy(prices)
     etf_signals, etf_equity, etf_holdings = build_etf(prices)
     ai_signals, ai_equity, ai_holdings = build_ai_analyst(prices, analysis_items)
