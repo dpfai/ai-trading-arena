@@ -26,6 +26,7 @@ EXPECTED_SOURCES = {
     "etf_balanced",
     "etf_conservative",
 }
+VALID_PRICE_STATUSES = {"actual", "carried_forward", "fallback"}
 
 
 def run(cmd: list[str], cwd: Path) -> None:
@@ -77,6 +78,10 @@ def assert_numeric_quality(filename: str, rows: list[dict]) -> None:
             raise RuntimeError(f"{filename} contains a non-object row: {row!r}")
         for field in required:
             assert_valid_number(filename, row, field)
+        if filename == "holdings.json":
+            status = row.get("price_status", "actual")
+            if status not in VALID_PRICE_STATUSES:
+                raise RuntimeError(f"holdings.json has invalid price_status: {row}")
 
 
 def assert_equity_dates(equity_rows: list[dict]) -> None:

@@ -14,7 +14,7 @@ That wrapper updates QuantAI first, then calls `scripts/build_trading_arena_data
 
 AI Analyst execution rule: a `stock_analysis_YYYY-MM-DD.json` file is a decision made on `YYYY-MM-DD`; any buy/sell signal is executed on the next trading day, using that next trading day's price. The decision day itself only marks existing holdings to market.
 
-Refresh validation fails before publish if any required source is missing, critical numeric fields are null/NaN, strategy latest dates are misaligned, or the latest AI Analyst stock analysis is more than 10 days old. AI Analyst signal reasons are normalized into English when `signals.json` is generated.
+Refresh validation fails before publish if any required source is missing, critical numeric fields are null/NaN, strategy latest dates are misaligned, or the latest AI Analyst stock analysis is more than 10 days old. Daily holding valuation may carry forward the latest available past price when the current-day quote is missing, and those rows are marked with `price_status=carried_forward`; execution prices for new trades still require a valid source price. AI Analyst signal reasons are normalized into English when `signals.json` is generated.
 
 The generator is intentionally kept in this repository. OpenClaw produces upstream research and portfolio files, while this repo owns the final Trading Arena JSON contract.
 

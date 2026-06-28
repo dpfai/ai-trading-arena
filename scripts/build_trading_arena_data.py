@@ -118,22 +118,36 @@ def download_closes(tickers: set[str], start: date, end: date) -> pd.DataFrame:
 
 
 def price_on(prices: pd.DataFrame, ticker: str, day: str | date, fallback: float | None = None) -> float | None:
+    price, _status = price_lookup(prices, ticker, day, fallback=fallback, allow_carry_forward=True)
+    return price
+
+
+def execution_price_on(prices: pd.DataFrame, ticker: str, day: str | date, fallback: float | None = None) -> float | None:
+    price, _status = price_lookup(prices, ticker, day, fallback=fallback, allow_carry_forward=False)
+    return price
+
+
+def valuation_price_on(prices: pd.DataFrame, ticker: str, day: str | date) -> tuple[float | None, str]:
+    return price_lookup(prices, ticker, day, fallback=None, allow_carry_forward=True)
+
+
+def price_lookup(
+    prices: pd.DataFrame,
+    ticker: str,
+    day: str | date,
+    fallback: float | None = None,
+    allow_carry_forward: bool = True,
+) -> tuple[float | None, str]:
     if ticker not in prices.columns:
-        return fallback
+        return fallback, "fallback" if fallback is not None else "missing"
     ts = pd.Timestamp(parse_day(day))
     if ts in prices.index and pd.notna(prices.loc[ts, ticker]):
-        return float(prices.loc[ts, ticker])
-    earlier = prices.index[prices.index <= ts]
-    if len(earlier):
-        val = prices.loc[earlier[-1], ticker]
-        if pd.notna(val):
-            return float(val)
-    later = prices.index[prices.index >= ts]
-    if len(later):
-        val = prices.loc[later[0], ticker]
-        if pd.notna(val):
-            return float(val)
-    return fallback
+        return float(prices.loc[ts, ticker]), "actual"
+    if allow_carry_forward:
+        series = prices.loc[prices.index <= ts, ticker].dropna()
+        if not series.empty:
+            return float(series.iloc[-1]), "carried_forward"
+    return fallback, "fallback" if fallback is not None else "missing"
 
 
 def trading_days(prices: pd.DataFrame, start: date) -> list[pd.Timestamp]:
@@ -206,7 +220,7 @@ def rebuild_quant_learning(
 
         for signal in sorted(by_day.get(day_str, []), key=lambda r: r["id"]):
             ticker = signal["ticker"]
-            price = float(signal.get("price") or price_on(prices, ticker, day_str) or 0)
+            price = float(signal.get("price") or execution_price_on(prices, ticker, day_str) or 0)
             shares = float(signal.get("shares") or 0)
             amount = float(signal.get("amount") or shares * price)
             if signal["action"] == "buy" and shares > 0:
@@ -227,11 +241,11 @@ def rebuild_quant_learning(
         for ticker, pos in sorted(positions.items()):
             if pos["shares"] <= 0:
                 continue
-            px = price_on(prices, ticker, day_str)
+            px, price_status = valuation_price_on(prices, ticker, day_str)
             if not px:
                 continue
             positions_value += pos["shares"] * px
-            holdings_rows.append(holding_row(day_str, "quant_learning", ticker, pos["shares"], pos["cost"], px))
+            holdings_rows.append(holding_row(day_str, "quant_learning", ticker, pos["shares"], pos["cost"], px, price_status))
         equity.append(equity_row(day_str, "quant_learning", cash + positions_value, cash, positions_value, total_contributed))
 
     return equity, holdings_rows
@@ -251,7 +265,7 @@ def build_spy(prices: pd.DataFrame) -> tuple[list[dict[str, Any]], list[dict[str
 
     for i, day in enumerate(days):
         day_str = iso_day(day)
-        price = price_on(prices, "SPY", day_str)
+        price = execution_price_on(prices, "SPY", day_str)
         if not price:
             continue
         if i == 0:
@@ -267,7 +281,7 @@ def build_spy(prices: pd.DataFrame) -> tuple[list[dict[str, Any]], list[dict[str
             signals.append(signal_row("spy", day_str, "buy_hold", "buy", "SPY", price, amount / price, amount, cash, "Weekly SPY DCA"))
 
         value = shares * price
-        holdings_rows.append(holding_row(day_str, "spy", "SPY", shares, total_cost, price))
+        holdings_rows.append(holding_row(day_str, "spy", "SPY", shares, total_cost, price, "actual"))
         equity.append(equity_row(day_str, "spy", value, cash, value, total_cost))
     return signals, equity, holdings_rows
 
@@ -318,11 +332,11 @@ def build_etf(prices: pd.DataFrame) -> tuple[list[dict[str, Any]], list[dict[str
             for ticker, pos in sorted(positions.items()):
                 if pos["shares"] <= 0:
                     continue
-                px = price_on(prices, ticker, day_str)
+                px, price_status = valuation_price_on(prices, ticker, day_str)
                 if not px:
                     continue
                 positions_value += pos["shares"] * px
-                holdings_rows.append(holding_row(day_str, source, ticker, pos["shares"], pos["cost"], px))
+                holdings_rows.append(holding_row(day_str, source, ticker, pos["shares"], pos["cost"], px, price_status))
             if positions_value > 0:
                 equity.append(equity_row(day_str, source, cash + positions_value, cash, positions_value, total_contributed))
 
@@ -435,7 +449,7 @@ def build_ai_analyst(prices: pd.DataFrame, items: list[dict[str, Any]]) -> tuple
             action = action_from_analysis(stock)
             if not action:
                 continue
-            px = price_on(prices, ticker, day_str, stock_price_hint(stock))
+            px = execution_price_on(prices, ticker, day_str, stock_price_hint(stock))
             if not px:
                 continue
             reason = analysis_reason(stock, action)
@@ -457,11 +471,11 @@ def build_ai_analyst(prices: pd.DataFrame, items: list[dict[str, Any]]) -> tuple
         for ticker, pos in sorted(positions.items()):
             if pos["shares"] <= 0:
                 continue
-            px = price_on(prices, ticker, day_str)
+            px, price_status = valuation_price_on(prices, ticker, day_str)
             if not px:
                 continue
             positions_value += pos["shares"] * px
-            holdings_rows.append(holding_row(day_str, "ai_analyst", ticker, pos["shares"], pos["cost"], px))
+            holdings_rows.append(holding_row(day_str, "ai_analyst", ticker, pos["shares"], pos["cost"], px, price_status))
         equity.append(equity_row(day_str, "ai_analyst", cash + positions_value, cash, positions_value, total_contributed))
 
     return signals, equity, holdings_rows
@@ -554,7 +568,7 @@ def signal_row(source: str, day: str, strategy: str, action: str, ticker: str, p
     }
 
 
-def holding_row(day: str, source: str, ticker: str, shares: float, total_cost: float, price: float) -> dict[str, Any]:
+def holding_row(day: str, source: str, ticker: str, shares: float, total_cost: float, price: float, price_status: str = "actual") -> dict[str, Any]:
     value = shares * price
     profit_loss = value - total_cost
     return {
@@ -565,6 +579,7 @@ def holding_row(day: str, source: str, ticker: str, shares: float, total_cost: f
         "cost_price": total_cost / shares if shares else 0.0,
         "current_price": price,
         "value": value,
+        "price_status": price_status,
         "profit_loss": profit_loss,
         "return_pct": profit_loss / total_cost if total_cost else 0.0,
     }
