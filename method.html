@@ -34,7 +34,7 @@
 
   <div class="max-w-4xl mx-auto px-4 py-12">
     <h1 class="text-3xl font-bold mb-2">Methodology</h1>
-    <p class="text-[var(--muted)] mb-10">How each strategy works. All signals are generated systematically — no manual intervention.</p>
+    <p class="text-[var(--muted)] mb-10">How each strategy works. Signals are generated from source systems, then rebuilt into a consistent daily arena dataset.</p>
 
     <!-- AI Analyst -->
     <div class="card p-6 mb-6">
@@ -43,12 +43,12 @@
         <h2 class="text-xl font-semibold">AI Analyst</h2>
       </div>
       <p class="text-[var(--muted)] text-sm leading-relaxed mb-3">
-        An LLM-based market analysis system that evaluates technical indicators, fundamental data, and market sentiment to generate buy/sell recommendations. Each signal includes price target, stop-loss level, and confidence score.
+        An LLM-based market analysis system that uses OpenClaw Haiyan weekly stock analysis as decision input. Buy/sell recommendations execute on the next trading day, then holdings are marked to market on each later trading day.
       </p>
       <div class="text-xs space-y-1 text-[var(--muted)]">
         <p><span class="text-[var(--text)]">Data inputs:</span> Technical (MA, RSI, MACD), Fundamental (analyst ratings, target prices), Market sentiment</p>
-        <p><span class="text-[var(--text)]">Decision:</span> LLM generates buy/sell recommendations based on multi-factor scoring</p>
-        <p><span class="text-[var(--text)]">Position sizing:</span> Self-determined based on confidence score and available cash</p>
+        <p><span class="text-[var(--text)]">Decision:</span> Weekly recommendations become arena trades on the next trading day</p>
+        <p><span class="text-[var(--text)]">Position sizing:</span> Current arena rule invests up to 30% of available cash per buy signal</p>
       </div>
     </div>
 
@@ -130,7 +130,7 @@
         <p><span class="text-[var(--text)] font-medium">Weekly deposit:</span> $500 every Tuesday</p>
         <p><span class="text-[var(--text)] font-medium">No shorting:</span> Long-only positions</p>
         <p><span class="text-[var(--text)] font-medium">No leverage:</span> Cannot spend more than available cash</p>
-        <p><span class="text-[var(--text)] font-medium">Transparency:</span> All signals are permanent — no edits, no deletions</p>
+        <p><span class="text-[var(--text)] font-medium">Transparency:</span> Outputs are rebuilt from source data with validation before publish</p>
         <p><span class="text-[var(--text)] font-medium">For educational purposes only. Not financial advice.</span></p>
       </div>
     </div>

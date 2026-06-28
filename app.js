@@ -1,5 +1,5 @@
 // AI Trading Arena - Main JS
-const ASSET_VERSION = '20260628-13';
+const ASSET_VERSION = '20260628-14';
 const withVersion = (path) => `${path}?v=${ASSET_VERSION}`;
 const STRATEGY_META = {
   ai_analyst:       { name: 'AI Analyst',       color: '#ff6b6b', desc: 'LLM-based market analysis & trading' },
@@ -23,7 +23,6 @@ async function loadData() {
     console.error('Fetch error:', r.reason);
     return [];
   });
-  console.log('Loaded:', { strategies: strategies.length, signals: signals.length, equity: equity.length, holdings: holdings.length });
   return { strategies, signals, equity, holdings };
 }
 
@@ -154,7 +153,6 @@ function renderSignals(signals) {
 }
 
 document.addEventListener('DOMContentLoaded', async function() {
-  console.log('App starting...');
   const data = await loadData();
   renderEquityChart(data.equity, currentRange);
   renderStrategyCards(data.equity, data.signals);
@@ -167,5 +165,4 @@ document.addEventListener('DOMContentLoaded', async function() {
       renderEquityChart(data.equity, currentRange);
     });
   });
-  console.log('App done');
 });

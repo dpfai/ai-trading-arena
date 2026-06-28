@@ -1,5 +1,5 @@
 // AI Trading Arena - Trading Page JS
-const ASSET_VERSION = '20260628-13';
+const ASSET_VERSION = '20260628-14';
 const withVersion = (path) => `${path}?v=${ASSET_VERSION}`;
 const RANGE_DAYS = { all: null, '7': 7, '30': 30, '90': 90, '180': 180, '365': 365 };
 const STRATEGY_META = {
@@ -22,7 +22,6 @@ async function loadData() {
     console.error('Fetch error:', r.reason);
     return [];
   });
-  console.log('Loaded:', { signals: signals.length, equity: equity.length, holdings: holdings.length });
   return { signals, equity, holdings };
 }
 
@@ -163,7 +162,6 @@ function renderSignals(signals, date) {
 }
 
 document.addEventListener('DOMContentLoaded', async function() {
-  console.log('Trading page starting...');
   const data = await loadData();
   renderEquityChart(data.equity, currentRange);
   renderHoldings(data.holdings);
@@ -178,5 +176,4 @@ document.addEventListener('DOMContentLoaded', async function() {
       renderEquityChart(data.equity, currentRange);
     });
   });
-  console.log('Trading page done');
 });
