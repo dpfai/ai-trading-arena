@@ -36,100 +36,100 @@
     "cost_price": 647.0999616054022,
     "current_price": 647.0999755859375,
     "date": "2026-06-15",
-    "profit_loss": 2.9166626063670265e-05,
-    "return_pct": 2.1604908195311306e-08,
-    "shares": 2.086231,
+    "profit_loss": 3.2407362368758186e-05,
+    "return_pct": 2.160490824583879e-08,
+    "shares": 2.3180344444444447,
     "source": "etf_aggressive",
     "ticker": "SMH",
-    "value": 1350.000029166626
+    "value": 1500.0000324073624
   },
   {
-    "cost_price": 120.73000081496697,
+    "cost_price": 120.73000081496696,
     "current_price": 120.7300033569336,
     "date": "2026-06-15",
-    "profit_loss": 8.053526289586443e-05,
-    "return_pct": 2.1054970691729264e-08,
-    "shares": 31.682266,
+    "profit_loss": 8.948362574301427e-05,
+    "return_pct": 2.1054970763062183e-08,
+    "shares": 35.20251777777778,
     "source": "etf_aggressive",
     "ticker": "VGT",
-    "value": 3825.000080535263
+    "value": 4250.000089483626
   },
   {
     "cost_price": 693.8299741078979,
     "current_price": 693.8300170898438,
     "date": "2026-06-15",
-    "profit_loss": 0.00023695422351011075,
-    "return_pct": 6.194881660395052e-08,
-    "shares": 5.512878,
+    "profit_loss": 0.00026328247076889966,
+    "return_pct": 6.19488166515058e-08,
+    "shares": 6.12542,
     "source": "etf_aggressive",
     "ticker": "VOO",
-    "value": 3825.0002369542235
+    "value": 4250.000263282471
   },
   {
-    "cost_price": 647.0998065171578,
+    "cost_price": 647.0998065171577,
     "current_price": 647.0999755859375,
     "date": "2026-06-15",
-    "profit_loss": 0.00023514440920280322,
-    "return_pct": 2.6127156578089245e-07,
-    "shares": 1.390821,
+    "profit_loss": 0.0002612715659324749,
+    "return_pct": 2.6127156593247493e-07,
+    "shares": 1.545356666666667,
     "source": "etf_balanced",
     "ticker": "SMH",
-    "value": 900.0002351444092
+    "value": 1000.0002612715659
   },
   {
     "cost_price": 120.73000200579484,
     "current_price": 120.7300033569336,
     "date": "2026-06-15",
-    "profit_loss": 4.028907005704241e-05,
-    "return_pct": 1.1191408349178447e-08,
-    "shares": 29.818603,
+    "profit_loss": 4.476563344724127e-05,
+    "return_pct": 1.1191408361810317e-08,
+    "shares": 33.13178111111111,
     "source": "etf_balanced",
     "ticker": "VGT",
-    "value": 3600.00004028907
+    "value": 4000.0000447656334
   },
   {
     "cost_price": 693.8299552294658,
     "current_price": 693.8300170898438,
     "date": "2026-06-15",
-    "profit_loss": 0.0004012102663182304,
-    "return_pct": 8.915783695960676e-08,
-    "shares": 6.485739,
+    "profit_loss": 0.00044578918459592387,
+    "return_pct": 8.915783691918477e-08,
+    "shares": 7.206376666666666,
     "source": "etf_balanced",
     "ticker": "VOO",
-    "value": 4500.000401210266
+    "value": 5000.000445789185
   },
   {
-    "cost_price": 647.1002717821142,
+    "cost_price": 647.1002717821141,
     "current_price": 647.0999755859375,
     "date": "2026-06-15",
-    "profit_loss": -0.00020597778319597637,
-    "return_pct": -4.577284071021697e-07,
-    "shares": 0.69541,
+    "profit_loss": -0.00022886420356371673,
+    "return_pct": -4.5772840712743346e-07,
+    "shares": 0.7726777777777778,
     "source": "etf_conservative",
     "ticker": "SMH",
-    "value": 449.9997940222168
+    "value": 499.99977113579644
   },
   {
-    "cost_price": 120.73000027058852,
+    "cost_price": 120.7300002705885,
     "current_price": 120.7300033569336,
     "date": "2026-06-15",
-    "profit_loss": 8.052668772506877e-05,
-    "return_pct": 2.556402784922818e-08,
-    "shares": 26.091278,
+    "profit_loss": 8.947409742177115e-05,
+    "return_pct": 2.5564027834791758e-08,
+    "shares": 28.99030888888889,
     "source": "etf_conservative",
     "ticker": "VGT",
-    "value": 3150.0000805266877
+    "value": 3500.0000894740974
   },
   {
     "cost_price": 693.8300265479926,
     "current_price": 693.8300170898438,
     "date": "2026-06-15",
-    "profit_loss": -7.361169446085114e-05,
-    "return_pct": -1.3631795270527988e-08,
-    "shares": 7.782886,
+    "profit_loss": -8.179077121894807e-05,
+    "return_pct": -1.363179520315801e-08,
+    "shares": 8.647651111111111,
     "source": "etf_conservative",
     "ticker": "VOO",
-    "value": 5399.9999263883055
+    "value": 5999.999918209229
   },
   {
     "cost_price": 744.0,
@@ -220,103 +220,103 @@
     "value": 1457.8763102627308
   },
   {
-    "cost_price": 645.385111486315,
+    "cost_price": 645.5480388614909,
     "current_price": 616.0,
     "date": "2026-06-16",
-    "profit_loss": -64.88185599999997,
-    "return_pct": -0.04553112701754384,
-    "shares": 2.207984,
+    "profit_loss": -72.09093422222213,
+    "return_pct": -0.04577202172839501,
+    "shares": 2.4397874444444447,
     "source": "etf_aggressive",
     "ticker": "SMH",
-    "value": 1360.118144
+    "value": 1502.9090657777779
   },
   {
-    "cost_price": 120.57271187036929,
+    "cost_price": 120.58767411028619,
     "current_price": 117.80999755859375,
     "date": "2026-06-16",
-    "profit_loss": -92.51230117297337,
-    "return_pct": -0.022913263448414455,
-    "shares": 33.486018,
+    "profit_loss": -102.79144782733783,
+    "return_pct": -0.0230344981125687,
+    "shares": 37.00626977777778,
     "source": "etf_aggressive",
     "ticker": "VGT",
-    "value": 3944.9876988270266
+    "value": 4359.708552172662
   },
   {
-    "cost_price": 693.6139926036268,
+    "cost_price": 693.6345564772411,
     "current_price": 689.75,
     "date": "2026-06-16",
-    "profit_loss": -22.492150250000122,
-    "return_pct": -0.005570811207430371,
-    "shares": 5.820961,
+    "profit_loss": -24.99130574999981,
+    "return_pct": -0.005600292605041975,
+    "shares": 6.433503,
     "source": "etf_aggressive",
     "ticker": "VOO",
-    "value": 4015.00784975
+    "value": 4437.50869425
   },
   {
-    "cost_price": 645.3848191903477,
+    "cost_price": 645.547759570143,
     "current_price": 616.0,
     "date": "2026-06-16",
-    "profit_loss": -43.254159999999956,
-    "return_pct": -0.045530694736842056,
-    "shares": 1.4719900000000001,
+    "profit_loss": -48.06018933333314,
+    "return_pct": -0.045771608888888704,
+    "shares": 1.626525666666667,
     "source": "etf_balanced",
     "ticker": "SMH",
-    "value": 906.74584
+    "value": 1001.9398106666669
   },
   {
-    "cost_price": 120.57271277054137,
+    "cost_price": 120.58767503807469,
     "current_price": 117.80999755859375,
     "date": "2026-06-16",
-    "profit_loss": -87.07042882397491,
-    "return_pct": -0.02291327074315129,
-    "shares": 31.516251999999998,
+    "profit_loss": -96.74492364278831,
+    "return_pct": -0.02303450562923531,
+    "shares": 34.82943011111111,
     "source": "etf_balanced",
     "ticker": "VGT",
-    "value": 3712.929571176025
+    "value": 4103.255076357212
   },
   {
-    "cost_price": 693.6140343089246,
+    "cost_price": 693.6345924159095,
     "current_price": 689.75,
     "date": "2026-06-16",
-    "profit_loss": -26.46163725000042,
-    "return_pct": -0.005570871000000089,
-    "shares": 6.848189,
+    "profit_loss": -29.401806666666744,
+    "return_pct": -0.005600344126984141,
+    "shares": 7.568826666666666,
     "source": "etf_balanced",
     "ticker": "VOO",
-    "value": 4723.53836275
+    "value": 5220.598193333333
   },
   {
-    "cost_price": 645.3856960790442,
+    "cost_price": 645.5485974449118,
     "current_price": 616.0,
     "date": "2026-06-16",
-    "profit_loss": -21.62769600000007,
-    "return_pct": -0.045531991578947516,
-    "shares": 0.7359939999999999,
+    "profit_loss": -24.030744888888933,
+    "return_pct": -0.04577284740740749,
+    "shares": 0.8132617777777778,
     "source": "etf_conservative",
     "ticker": "SMH",
-    "value": 453.37230399999993
+    "value": 500.96925511111107
   },
   {
-    "cost_price": 120.57271058440922,
+    "cost_price": 120.58767289478632,
     "current_price": 117.80999755859375,
     "date": "2026-06-16",
-    "profit_loss": -76.18656631597923,
-    "return_pct": -0.022913253027362177,
-    "shares": 27.576721,
+    "profit_loss": -84.65174437369114,
+    "return_pct": -0.02303448826494997,
+    "shares": 30.47575188888889,
     "source": "etf_conservative",
     "ticker": "VGT",
-    "value": 3248.8134336840208
+    "value": 3590.348255626309
   },
   {
-    "cost_price": 693.6141018317983,
+    "cost_price": 693.634660300071,
     "current_price": 689.75,
     "date": "2026-06-16",
-    "profit_loss": -31.754516499999227,
-    "return_pct": -0.005570967807017408,
-    "shares": 8.217826,
+    "profit_loss": -35.282781111111944,
+    "return_pct": -0.005600441446208245,
+    "shares": 9.08259111111111,
     "source": "etf_conservative",
     "ticker": "VOO",
-    "value": 5668.245483500001
+    "value": 6264.717218888888
   },
   {
     "cost_price": 740.1548267339859,
@@ -407,103 +407,103 @@
     "value": 1428.8368187920091
   },
   {
-    "cost_price": 645.385111486315,
+    "cost_price": 645.5480388614909,
     "current_price": 623.969970703125,
     "date": "2026-06-17",
-    "profit_loss": -47.28428820703107,
-    "return_pct": -0.03318195663651303,
-    "shares": 2.207984,
+    "profit_loss": -52.6458997681475,
+    "return_pct": -0.033425968106760316,
+    "shares": 2.4397874444444447,
     "source": "etf_aggressive",
     "ticker": "SMH",
-    "value": 1377.715711792969
+    "value": 1522.3541002318525
   },
   {
-    "cost_price": 120.57271187036929,
+    "cost_price": 120.58767411028619,
     "current_price": 116.93000030517578,
     "date": "2026-06-17",
-    "profit_loss": -121.9799050408783,
-    "return_pct": -0.030211741186595243,
-    "shares": 33.486018,
+    "profit_loss": -135.35686359102692,
+    "return_pct": -0.03033207027249903,
+    "shares": 37.00626977777778,
     "source": "etf_aggressive",
     "ticker": "VGT",
-    "value": 3915.5200949591217
+    "value": 4327.143136408973
   },
   {
-    "cost_price": 693.6139926036268,
+    "cost_price": 693.6345564772411,
     "current_price": 681.4099731445312,
     "date": "2026-06-17",
-    "profit_loss": -71.0391213146363,
-    "return_pct": -0.017594828808578652,
-    "shares": 5.820961,
+    "profit_loss": -78.64689354473921,
+    "return_pct": -0.017623953735515792,
+    "shares": 6.433503,
     "source": "etf_aggressive",
     "ticker": "VOO",
-    "value": 3966.4608786853637
+    "value": 4383.853106455261
   },
   {
-    "cost_price": 645.3848191903477,
+    "cost_price": 645.547759570143,
     "current_price": 623.969970703125,
     "date": "2026-06-17",
-    "profit_loss": -31.5224428247069,
-    "return_pct": -0.03318151876284937,
-    "shares": 1.4719900000000001,
+    "profit_loss": -35.09682742211896,
+    "return_pct": -0.03342554992582759,
+    "shares": 1.626525666666667,
     "source": "etf_balanced",
     "ticker": "SMH",
-    "value": 918.4775571752931
+    "value": 1014.903172577881
   },
   {
-    "cost_price": 120.57271277054137,
+    "cost_price": 120.58767503807469,
     "current_price": 116.93000030517578,
     "date": "2026-06-17",
-    "profit_loss": -114.80464402200323,
-    "return_pct": -0.030211748426842957,
-    "shares": 31.516251999999998,
+    "profit_loss": -127.39472647867979,
+    "return_pct": -0.030332077733018995,
+    "shares": 34.82943011111111,
     "source": "etf_balanced",
     "ticker": "VGT",
-    "value": 3685.1953559779968
+    "value": 4072.60527352132
   },
   {
-    "cost_price": 693.6140343089246,
+    "cost_price": 693.6345924159095,
     "current_price": 681.4099731445312,
     "date": "2026-06-17",
-    "profit_loss": -83.57571742132586,
-    "return_pct": -0.017594887878173867,
-    "shares": 6.848189,
+    "profit_loss": -92.52602433105494,
+    "return_pct": -0.017624004634486656,
+    "shares": 7.568826666666666,
     "source": "etf_balanced",
     "ticker": "VOO",
-    "value": 4666.424282578674
+    "value": 5157.473975668945
   },
   {
-    "cost_price": 645.3856960790442,
+    "cost_price": 645.5485974449118,
     "current_price": 623.969970703125,
     "date": "2026-06-17",
-    "profit_loss": -15.761845382324282,
-    "return_pct": -0.033182832383840594,
-    "shares": 0.7359939999999999,
+    "profit_loss": -17.54907234602865,
+    "return_pct": -0.033426804468626004,
+    "shares": 0.8132617777777778,
     "source": "etf_conservative",
     "ticker": "SMH",
-    "value": 459.2381546176757
+    "value": 507.45092765397135
   },
   {
-    "cost_price": 120.57271058440922,
+    "cost_price": 120.58767289478632,
     "current_price": 116.93000030517578,
     "date": "2026-06-17",
-    "profit_loss": -100.45400505425278,
-    "return_pct": -0.030211730843384292,
-    "shares": 27.576721,
+    "profit_loss": -111.4703223317606,
+    "return_pct": -0.030332060498438257,
+    "shares": 30.47575188888889,
     "source": "etf_conservative",
     "ticker": "VGT",
-    "value": 3224.545994945747
+    "value": 3563.5296776682394
   },
   {
-    "cost_price": 693.6141018317983,
+    "cost_price": 693.634660300071,
     "current_price": 681.4099731445312,
     "date": "2026-06-17",
-    "profit_loss": -100.29140603356882,
-    "return_pct": -0.017594983514661197,
-    "shares": 8.217826,
+    "profit_loss": -111.03183489502044,
+    "return_pct": -0.01762410077698737,
+    "shares": 9.08259111111111,
     "source": "etf_conservative",
     "ticker": "VOO",
-    "value": 5599.708593966431
+    "value": 6188.96816510498
   },
   {
     "cost_price": 738.7438254620013,
@@ -594,103 +594,103 @@
     "value": 1433.950893309572
   },
   {
-    "cost_price": 645.385111486315,
+    "cost_price": 645.5480388614909,
     "current_price": 659.8800048828125,
     "date": "2026-06-18",
-    "profit_loss": 32.00449270117201,
-    "return_pct": 0.022459293123629483,
-    "shares": 2.207984,
+    "profit_loss": 34.966950753024776,
+    "return_pct": 0.022201238573349064,
+    "shares": 2.4397874444444447,
     "source": "etf_aggressive",
     "ticker": "SMH",
-    "value": 1457.004492701172
+    "value": 1609.9669507530248
   },
   {
-    "cost_price": 120.57271187036929,
+    "cost_price": 120.58767411028619,
     "current_price": 120.04000091552734,
     "date": "2026-06-18",
-    "profit_loss": -17.83836862263479,
-    "return_pct": -0.004418171795079824,
-    "shares": 33.486018,
+    "profit_loss": -20.267341995303468,
+    "return_pct": -0.004541701287462962,
+    "shares": 37.00626977777778,
     "source": "etf_aggressive",
     "ticker": "VGT",
-    "value": 4019.661631377365
+    "value": 4442.2326580046965
   },
   {
-    "cost_price": 693.6139926036268,
+    "cost_price": 693.6345564772411,
     "current_price": 688.1099853515625,
     "date": "2026-06-18",
-    "profit_loss": -32.038611557983586,
-    "return_pct": -0.007935259828602746,
-    "shares": 5.820961,
+    "profit_loss": -35.54234491076659,
+    "return_pct": -0.0079646711284631,
+    "shares": 6.433503,
     "source": "etf_aggressive",
     "ticker": "VOO",
-    "value": 4005.4613884420164
+    "value": 4426.957655089233
   },
   {
-    "cost_price": 645.3848191903477,
+    "cost_price": 645.547759570143,
     "current_price": 659.8800048828125,
     "date": "2026-06-18",
-    "profit_loss": 21.33676838745123,
-    "return_pct": 0.022459756197317084,
-    "shares": 1.4719900000000001,
+    "profit_loss": 23.311764862020027,
+    "return_pct": 0.022201680820971455,
+    "shares": 1.626525666666667,
     "source": "etf_balanced",
     "ticker": "SMH",
-    "value": 971.3367683874512
+    "value": 1073.31176486202
   },
   {
-    "cost_price": 120.57271277054137,
+    "cost_price": 120.58767503807469,
     "current_price": 120.04000091552734,
     "date": "2026-06-18",
-    "profit_loss": -16.789081066009658,
-    "return_pct": -0.004418179227897279,
-    "shares": 31.516251999999998,
+    "profit_loss": -19.075177574926784,
+    "return_pct": -0.004541708946411139,
+    "shares": 34.82943011111111,
     "source": "etf_balanced",
     "ticker": "VGT",
-    "value": 3783.2109189339903
+    "value": 4180.924822425073
   },
   {
-    "cost_price": 693.6140343089246,
+    "cost_price": 693.6345924159095,
     "current_price": 688.1099853515625,
     "date": "2026-06-18",
-    "profit_loss": -37.69276752526912,
-    "return_pct": -0.007935319479004025,
-    "shares": 6.848189,
+    "profit_loss": -41.81479327148463,
+    "return_pct": -0.007964722527901834,
+    "shares": 7.568826666666666,
     "source": "etf_balanced",
     "ticker": "VOO",
-    "value": 4712.307232474731
+    "value": 5208.185206728515
   },
   {
-    "cost_price": 645.3856960790442,
+    "cost_price": 645.5485974449118,
     "current_price": 659.8800048828125,
     "date": "2026-06-18",
-    "profit_loss": 10.667724313720669,
-    "return_pct": 0.02245836697625404,
-    "shares": 0.7359939999999999,
+    "profit_loss": 11.655185891004749,
+    "return_pct": 0.022200354078104282,
+    "shares": 0.8132617777777778,
     "source": "etf_conservative",
     "ticker": "SMH",
-    "value": 485.66772431372067
+    "value": 536.6551858910047
   },
   {
-    "cost_price": 120.57271058440922,
+    "cost_price": 120.58767289478632,
     "current_price": 120.04000091552734,
     "date": "2026-06-18",
-    "profit_loss": -14.690385912757847,
-    "return_pct": -0.0044181611767692775,
-    "shares": 27.576721,
+    "profit_loss": -16.69071535639341,
+    "return_pct": -0.004541691253440384,
+    "shares": 30.47575188888889,
     "source": "etf_conservative",
     "ticker": "VGT",
-    "value": 3310.309614087242
+    "value": 3658.3092846436066
   },
   {
-    "cost_price": 693.6141018317983,
+    "cost_price": 693.634660300071,
     "current_price": 688.1099853515625,
     "date": "2026-06-18",
-    "profit_loss": -45.23187151831007,
-    "return_pct": -0.007935416055843872,
-    "shares": 8.217826,
+    "profit_loss": -50.17836357910164,
+    "return_pct": -0.00796481961573042,
+    "shares": 9.08259111111111,
     "source": "etf_conservative",
     "ticker": "VOO",
-    "value": 5654.76812848169
+    "value": 6249.821636420898
   },
   {
     "cost_price": 738.7890200231158,
@@ -781,103 +781,103 @@
     "value": 1454.4073005196615
   },
   {
-    "cost_price": 645.385111486315,
+    "cost_price": 645.5480388614909,
     "current_price": 668.9099731445312,
     "date": "2026-06-22",
-    "profit_loss": 51.94251814355471,
-    "return_pct": 0.03645088992530155,
-    "shares": 2.207984,
+    "profit_loss": 56.99815394169809,
+    "return_pct": 0.03618930408996704,
+    "shares": 2.4397874444444447,
     "source": "etf_aggressive",
     "ticker": "SMH",
-    "value": 1476.9425181435547
+    "value": 1631.998153941698
   },
   {
-    "cost_price": 120.57271187036929,
+    "cost_price": 120.58767411028619,
     "current_price": 120.51000213623047,
     "date": "2026-06-22",
-    "profit_loss": -2.0998992861477745,
-    "return_pct": -0.0005200988944019255,
-    "shares": 33.486018,
+    "profit_loss": -2.8743500260789006,
+    "return_pct": -0.0006441120506619385,
+    "shares": 37.00626977777778,
     "source": "etf_aggressive",
     "ticker": "VGT",
-    "value": 4035.400100713852
+    "value": 4459.625649973921
   },
   {
-    "cost_price": 693.6139926036268,
+    "cost_price": 693.6345564772411,
     "current_price": 686.0999755859375,
     "date": "2026-06-22",
-    "profit_loss": -43.73880001330599,
-    "return_pct": -0.01083313932218105,
-    "shares": 5.820961,
+    "profit_loss": -48.473748767944016,
+    "return_pct": -0.010862464709903421,
+    "shares": 6.433503,
     "source": "etf_aggressive",
     "ticker": "VOO",
-    "value": 3993.761199986694
+    "value": 4414.026251232056
   },
   {
-    "cost_price": 645.3848191903477,
+    "cost_price": 645.547759570143,
     "current_price": 668.9099731445312,
     "date": "2026-06-22",
-    "profit_loss": 34.628791369018586,
-    "return_pct": 0.036451359335809036,
-    "shares": 1.4719900000000001,
+    "profit_loss": 37.99924000889109,
+    "return_pct": 0.036189752389420085,
+    "shares": 1.626525666666667,
     "source": "etf_balanced",
     "ticker": "SMH",
-    "value": 984.6287913690186
+    "value": 1087.999240008891
   },
   {
-    "cost_price": 120.57271277054137,
+    "cost_price": 120.58767503807469,
     "current_price": 120.51000213623047,
     "date": "2026-06-22",
-    "profit_loss": -1.9764041540224753,
-    "return_pct": -0.000520106356321704,
-    "shares": 31.516251999999998,
+    "profit_loss": -2.7053029063108625,
+    "return_pct": -0.0006441197395978244,
+    "shares": 34.82943011111111,
     "source": "etf_balanced",
     "ticker": "VGT",
-    "value": 3798.0235958459775
+    "value": 4197.294697093689
   },
   {
-    "cost_price": 693.6140343089246,
+    "cost_price": 693.6345924159095,
     "current_price": 686.0999755859375,
     "date": "2026-06-22",
-    "profit_loss": -51.457694292114866,
-    "return_pct": -0.010833198798339971,
-    "shares": 6.848189,
+    "profit_loss": -57.02820878580769,
+    "return_pct": -0.010862515959201464,
+    "shares": 7.568826666666666,
     "source": "etf_balanced",
     "ticker": "VOO",
-    "value": 4698.542305707885
+    "value": 5192.971791214192
   },
   {
-    "cost_price": 645.3856960790442,
+    "cost_price": 645.5485974449118,
     "current_price": 668.9099731445312,
     "date": "2026-06-22",
-    "profit_loss": 17.313726774536065,
-    "return_pct": 0.03644995110428645,
-    "shares": 0.7359939999999999,
+    "profit_loss": 18.998913932807,
+    "return_pct": 0.036188407491060955,
+    "shares": 0.8132617777777778,
     "source": "etf_conservative",
     "ticker": "SMH",
-    "value": 492.31372677453606
+    "value": 543.998913932807
   },
   {
-    "cost_price": 120.57271058440922,
+    "cost_price": 120.58767289478632,
     "current_price": 120.51000213623047,
     "date": "2026-06-22",
-    "profit_loss": -1.7292933797684782,
-    "return_pct": -0.0005200882345168356,
-    "shares": 27.576721,
+    "profit_loss": -2.3670747667702017,
+    "return_pct": -0.0006441019773524359,
+    "shares": 30.47575188888889,
     "source": "etf_conservative",
     "ticker": "VGT",
-    "value": 3323.2707066202315
+    "value": 3672.63292523323
   },
   {
-    "cost_price": 693.6141018317983,
+    "cost_price": 693.634660300071,
     "current_price": 686.0999755859375,
     "date": "2026-06-22",
-    "profit_loss": -61.74978203051705,
-    "return_pct": -0.010833295093073167,
-    "shares": 8.217826,
+    "profit_loss": -68.43446040961408,
+    "return_pct": -0.010862612763430805,
+    "shares": 9.08259111111111,
     "source": "etf_conservative",
     "ticker": "VOO",
-    "value": 5638.250217969483
+    "value": 6231.565539590386
   },
   {
     "cost_price": 738.7826508337364,
@@ -1067,103 +1067,103 @@
     "value": 1463.5984028164314
   },
   {
-    "cost_price": 644.3168887913345,
+    "cost_price": 644.5689058050006,
     "current_price": 622.0499877929688,
     "date": "2026-06-23",
-    "profit_loss": -51.83839206854236,
-    "return_pct": -0.03455892804569491,
-    "shares": 2.328047,
+    "profit_loss": -57.645062281507535,
+    "return_pct": -0.03493640138273184,
+    "shares": 2.5598504444444448,
     "source": "etf_aggressive",
     "ticker": "SMH",
-    "value": 1448.1616079314576
+    "value": 1592.3549377184925
   },
   {
-    "cost_price": 120.38360391177031,
+    "cost_price": 120.41501237927856,
     "current_price": 116.06999969482422,
     "date": "2026-06-23",
-    "profit_loss": -152.28666800386782,
-    "return_pct": -0.03583215717738066,
-    "shares": 35.303811,
+    "profit_loss": -168.691045231496,
+    "return_pct": -0.03608364603882267,
+    "shares": 38.82406277777778,
     "source": "etf_aggressive",
     "ticker": "VGT",
-    "value": 4097.713331996132
+    "value": 4506.308954768504
   },
   {
-    "cost_price": 692.8756245866182,
+    "cost_price": 692.9622751337417,
     "current_price": 676.3400268554688,
     "date": "2026-06-23",
-    "profit_loss": -101.42699189239465,
-    "return_pct": -0.02386517456291639,
-    "shares": 6.133857,
+    "profit_loss": -112.14031916229214,
+    "return_pct": -0.023987234045410085,
+    "shares": 6.746399,
     "source": "etf_aggressive",
     "ticker": "VOO",
-    "value": 4148.573008107605
+    "value": 4562.859680837708
   },
   {
-    "cost_price": 644.3166120286179,
+    "cost_price": 644.5686400168133,
     "current_price": 622.0499877929688,
     "date": "2026-06-23",
-    "profit_loss": -34.55851334570309,
-    "return_pct": -0.03455851334570309,
-    "shares": 1.552032,
+    "profit_loss": -38.42960378212479,
+    "return_pct": -0.03493600343829526,
+    "shares": 1.706567666666667,
     "source": "etf_balanced",
     "ticker": "SMH",
-    "value": 965.4414866542969
+    "value": 1061.5703962178752
   },
   {
-    "cost_price": 120.3836047642534,
+    "cost_price": 120.41501326236057,
     "current_price": 116.06999969482422,
     "date": "2026-06-23",
-    "profit_loss": -143.3286560201118,
-    "return_pct": -0.03583216400502795,
-    "shares": 33.227115999999995,
+    "profit_loss": -158.76807367454603,
+    "return_pct": -0.036083653107851374,
+    "shares": 36.54029411111111,
     "source": "etf_balanced",
     "ticker": "VGT",
-    "value": 3856.671343979888
+    "value": 4241.231926325454
   },
   {
-    "cost_price": 692.875658474382,
+    "cost_price": 692.9623042365741,
     "current_price": 676.3400268554688,
     "date": "2026-06-23",
-    "profit_loss": -119.32611152282698,
-    "return_pct": -0.023865222304565396,
-    "shares": 7.216302,
+    "profit_loss": -131.93001269643173,
+    "return_pct": -0.02398727503571486,
+    "shares": 7.9369396666666665,
     "source": "etf_balanced",
     "ticker": "VOO",
-    "value": 4880.673888477173
+    "value": 5368.069987303568
   },
   {
-    "cost_price": 644.3174423174811,
+    "cost_price": 644.5694373820324,
     "current_price": 622.0499877929688,
     "date": "2026-06-23",
-    "profit_loss": -17.27987872283944,
-    "return_pct": -0.034559757445678886,
-    "shares": 0.7760149999999999,
+    "profit_loss": -19.215458499382862,
+    "return_pct": -0.03493719727160521,
+    "shares": 0.8532827777777777,
     "source": "etf_conservative",
     "ticker": "SMH",
-    "value": 482.72012127716056
+    "value": 530.7845415006171
   },
   {
-    "cost_price": 120.38360269393739,
+    "cost_price": 120.41501122234891,
     "current_price": 116.06999969482422,
     "date": "2026-06-23",
-    "profit_loss": -125.4125159825976,
-    "return_pct": -0.03583214742359931,
-    "shares": 29.073726999999998,
+    "profit_loss": -138.92200159397817,
+    "return_pct": -0.036083636777656664,
+    "shares": 31.97275788888889,
     "source": "etf_conservative",
     "ticker": "VGT",
-    "value": 3374.5874840174024
+    "value": 3711.077998406022
   },
   {
-    "cost_price": 692.8757704922917,
+    "cost_price": 692.9624125638053,
     "current_price": 676.3400268554688,
     "date": "2026-06-23",
-    "profit_loss": -143.1922807034298,
-    "return_pct": -0.023865380117238297,
-    "shares": 8.659561,
+    "profit_loss": -158.31702223086995,
+    "return_pct": -0.023987427610737872,
+    "shares": 9.52432611111111,
     "source": "etf_conservative",
     "ticker": "VOO",
-    "value": 5856.80771929657
+    "value": 6441.68297776913
   },
   {
     "cost_price": 737.902282317259,
@@ -1353,103 +1353,103 @@
     "value": 1451.2601441581344
   },
   {
-    "cost_price": 644.3168887913345,
+    "cost_price": 644.5689058050006,
     "current_price": 618.9199829101562,
     "date": "2026-06-24",
-    "profit_loss": -59.12519054595941,
-    "return_pct": -0.039416793697306274,
-    "shares": 2.328047,
+    "profit_loss": -65.65740667188834,
+    "return_pct": -0.03979236767993233,
+    "shares": 2.5598504444444448,
     "source": "etf_aggressive",
     "ticker": "SMH",
-    "value": 1440.8748094540406
+    "value": 1584.3425933281117
   },
   {
-    "cost_price": 120.38360391177031,
+    "cost_price": 120.41501237927856,
     "current_price": 115.12999725341797,
     "date": "2026-06-24",
-    "profit_loss": -185.4723365348127,
-    "return_pct": -0.04364054977289711,
-    "shares": 35.303811,
+    "profit_loss": -205.1857590279169,
+    "return_pct": -0.04389000193110522,
+    "shares": 38.82406277777778,
     "source": "etf_aggressive",
     "ticker": "VGT",
-    "value": 4064.5276634651873
+    "value": 4469.814240972083
   },
   {
-    "cost_price": 692.8756245866182,
+    "cost_price": 692.9622751337417,
     "current_price": 675.6900024414062,
     "date": "2026-06-24",
-    "profit_loss": -105.41414869476284,
-    "return_pct": -0.02480332910465008,
-    "shares": 6.133857,
+    "profit_loss": -116.52564321929913,
+    "return_pct": -0.02492527127685543,
+    "shares": 6.746399,
     "source": "etf_aggressive",
     "ticker": "VOO",
-    "value": 4144.585851305237
+    "value": 4558.474356780701
   },
   {
-    "cost_price": 644.3166120286179,
+    "cost_price": 644.5686400168133,
     "current_price": 618.9199829101562,
     "date": "2026-06-24",
-    "profit_loss": -39.416381083984334,
-    "return_pct": -0.039416381083984334,
-    "shares": 1.552032,
+    "profit_loss": -43.771168911641325,
+    "return_pct": -0.03979197173785575,
+    "shares": 1.706567666666667,
     "source": "etf_balanced",
     "ticker": "SMH",
-    "value": 960.5836189160157
+    "value": 1056.2288310883587
   },
   {
-    "cost_price": 120.3836047642534,
+    "cost_price": 120.41501326236057,
     "current_price": 115.12999725341797,
     "date": "2026-06-24",
-    "profit_loss": -174.56222618100037,
-    "return_pct": -0.04364055654525009,
-    "shares": 33.227115999999995,
+    "profit_loss": -193.11603934869345,
+    "return_pct": -0.043890008942884876,
+    "shares": 36.54029411111111,
     "source": "etf_balanced",
     "ticker": "VGT",
-    "value": 3825.4377738189996
+    "value": 4206.883960651307
   },
   {
-    "cost_price": 692.875658474382,
+    "cost_price": 692.9623042365741,
     "current_price": 675.6900024414062,
     "date": "2026-06-24",
-    "profit_loss": -124.01688400207513,
-    "return_pct": -0.024803376800415024,
-    "shares": 7.216302,
+    "profit_loss": -137.08921725270557,
+    "return_pct": -0.02492531222776465,
+    "shares": 7.9369396666666665,
     "source": "etf_balanced",
     "ticker": "VOO",
-    "value": 4875.983115997925
+    "value": 5362.910782747294
   },
   {
-    "cost_price": 644.3174423174811,
+    "cost_price": 644.5694373820324,
     "current_price": 618.9199829101562,
     "date": "2026-06-24",
-    "profit_loss": -19.708809461975136,
-    "return_pct": -0.03941761892395027,
-    "shares": 0.7760149999999999,
+    "profit_loss": -21.886237760247127,
+    "return_pct": -0.03979315956408568,
+    "shares": 0.8532827777777777,
     "source": "etf_conservative",
     "ticker": "SMH",
-    "value": 480.29119053802486
+    "value": 528.1137622397529
   },
   {
-    "cost_price": 120.38360269393739,
+    "cost_price": 120.41501122234891,
     "current_price": 115.12999725341797,
     "date": "2026-06-24",
-    "profit_loss": -152.74189034337633,
-    "return_pct": -0.04364054009810752,
-    "shares": 29.073726999999998,
+    "profit_loss": -168.97647206802458,
+    "return_pct": -0.04388999274494145,
+    "shares": 31.97275788888889,
     "source": "etf_conservative",
     "ticker": "VGT",
-    "value": 3347.2581096566237
+    "value": 3681.0235279319754
   },
   {
-    "cost_price": 692.8757704922917,
+    "cost_price": 692.9624125638053,
     "current_price": 675.6900024414062,
     "date": "2026-06-24",
-    "profit_loss": -148.82120676849354,
-    "return_pct": -0.02480353446141559,
-    "shares": 8.659561,
+    "profit_loss": -164.5080667305847,
+    "return_pct": -0.024925464656149195,
+    "shares": 9.52432611111111,
     "source": "etf_conservative",
     "ticker": "VOO",
-    "value": 5851.1787932315065
+    "value": 6435.491933269415
   },
   {
     "cost_price": 737.5033115073225,
@@ -1639,103 +1639,103 @@
     "value": 1486.0575260493406
   },
   {
-    "cost_price": 644.3168887913345,
+    "cost_price": 644.5689058050006,
     "current_price": 636.8800048828125,
     "date": "2026-06-25",
-    "profit_loss": -17.313415272582915,
-    "return_pct": -0.01154227684838861,
-    "shares": 2.328047,
+    "profit_loss": -19.682436442952167,
+    "return_pct": -0.01192874935936495,
+    "shares": 2.5598504444444448,
     "source": "etf_aggressive",
     "ticker": "SMH",
-    "value": 1482.686584727417
+    "value": 1630.3175635570478
   },
   {
-    "cost_price": 120.38360391177031,
+    "cost_price": 120.41501237927856,
     "current_price": 115.47000122070312,
     "date": "2026-06-25",
-    "profit_loss": -173.46890073452732,
-    "return_pct": -0.04081621193753584,
-    "shares": 35.303811,
+    "profit_loss": -191.98542365734465,
+    "return_pct": -0.04106640078231971,
+    "shares": 38.82406277777778,
     "source": "etf_aggressive",
     "ticker": "VGT",
-    "value": 4076.5310992654727
+    "value": 4483.014576342655
   },
   {
-    "cost_price": 692.8756245866182,
+    "cost_price": 692.9622751337417,
     "current_price": 675.7100219726562,
     "date": "2026-06-25",
-    "profit_loss": -105.29135175286865,
-    "return_pct": -0.02477443570655733,
-    "shares": 6.133857,
+    "profit_loss": -116.39058347369337,
+    "return_pct": -0.024896381491699118,
+    "shares": 6.746399,
     "source": "etf_aggressive",
     "ticker": "VOO",
-    "value": 4144.708648247131
+    "value": 4558.609416526307
   },
   {
-    "cost_price": 644.3166120286179,
+    "cost_price": 644.5686400168133,
     "current_price": 636.8800048828125,
     "date": "2026-06-25",
-    "profit_loss": -11.541852261718645,
-    "return_pct": -0.011541852261718645,
-    "shares": 1.552032,
+    "profit_loss": -13.121176120483142,
+    "return_pct": -0.011928341927711947,
+    "shares": 1.706567666666667,
     "source": "etf_balanced",
     "ticker": "SMH",
-    "value": 988.4581477382814
+    "value": 1086.8788238795169
   },
   {
-    "cost_price": 120.3836047642534,
+    "cost_price": 120.41501326236057,
     "current_price": 115.47000122070312,
     "date": "2026-06-25",
-    "profit_loss": -163.2648749195564,
-    "return_pct": -0.0408162187298891,
-    "shares": 33.227115999999995,
+    "profit_loss": -180.69219438514938,
+    "return_pct": -0.04106640781480668,
+    "shares": 36.54029411111111,
     "source": "etf_balanced",
     "ticker": "VGT",
-    "value": 3836.7351250804436
+    "value": 4219.307805614851
   },
   {
-    "cost_price": 692.875658474382,
+    "cost_price": 692.9623042365741,
     "current_price": 675.7100219726562,
     "date": "2026-06-25",
-    "profit_loss": -123.87241701867697,
-    "return_pct": -0.024774483403735392,
-    "shares": 7.216302,
+    "profit_loss": -136.93032344101994,
+    "return_pct": -0.024896422443821807,
+    "shares": 7.9369396666666665,
     "source": "etf_balanced",
     "ticker": "VOO",
-    "value": 4876.127582981323
+    "value": 5363.06967655898
   },
   {
-    "cost_price": 644.3174423174811,
+    "cost_price": 644.5694373820324,
     "current_price": 636.8800048828125,
     "date": "2026-06-25",
-    "profit_loss": -5.771563010864327,
-    "return_pct": -0.011543126021728654,
-    "shares": 0.7760149999999999,
+    "profit_loss": -6.561260322469138,
+    "return_pct": -0.011929564222671161,
+    "shares": 0.8532827777777777,
     "source": "etf_conservative",
     "ticker": "SMH",
-    "value": 494.2284369891357
+    "value": 543.4387396775309
   },
   {
-    "cost_price": 120.38360269393739,
+    "cost_price": 120.41501122234891,
     "current_price": 115.47000122070312,
     "date": "2026-06-25",
-    "profit_loss": -142.85670781961062,
-    "return_pct": -0.04081620223417446,
-    "shares": 29.073726999999998,
+    "profit_loss": -158.1056075407546,
+    "return_pct": -0.041066391569027166,
+    "shares": 31.97275788888889,
     "source": "etf_conservative",
     "ticker": "VGT",
-    "value": 3357.1432921803894
+    "value": 3691.8943924592454
   },
   {
-    "cost_price": 692.8757704922917,
+    "cost_price": 692.9624125638053,
     "current_price": 675.7100219726562,
     "date": "2026-06-25",
-    "profit_loss": -148.64784641644292,
-    "return_pct": -0.024774641069407154,
-    "shares": 8.659561,
+    "profit_loss": -164.3173941863679,
+    "return_pct": -0.024896574876722408,
+    "shares": 9.52432611111111,
     "source": "etf_conservative",
     "ticker": "VOO",
-    "value": 5851.352153583557
+    "value": 6435.682605813632
   },
   {
     "cost_price": 737.4068014706569,
@@ -1925,103 +1925,103 @@
     "value": 1530.2605791583449
   },
   {
-    "cost_price": 644.3168887913345,
+    "cost_price": 644.5689058050006,
     "current_price": 611.6099853515625,
     "date": "2026-06-26",
-    "profit_loss": -76.14320843225096,
-    "return_pct": -0.050762138954833974,
-    "shares": 2.328047,
+    "profit_loss": -84.36990717114236,
+    "return_pct": -0.05113327707341961,
+    "shares": 2.5598504444444448,
     "source": "etf_aggressive",
     "ticker": "SMH",
-    "value": 1423.856791567749
+    "value": 1565.6300928288576
   },
   {
-    "cost_price": 120.38360391177031,
+    "cost_price": 120.41501237927856,
     "current_price": 113.86000061035156,
     "date": "2026-06-26",
-    "profit_loss": -230.30805799226346,
-    "return_pct": -0.054190131292297286,
-    "shares": 35.303811,
+    "profit_loss": -254.4921884258938,
+    "return_pct": -0.05443683174885429,
+    "shares": 38.82406277777778,
     "source": "etf_aggressive",
     "ticker": "VGT",
-    "value": 4019.6919420077365
+    "value": 4420.507811574106
   },
   {
-    "cost_price": 692.8756245866182,
+    "cost_price": 692.9622751337417,
     "current_price": 670.260009765625,
     "date": "2026-06-26",
-    "profit_loss": -138.72094727905278,
-    "return_pct": -0.03264022288918889,
-    "shares": 6.133857,
+    "profit_loss": -153.1585403771969,
+    "return_pct": -0.0327611851074218,
+    "shares": 6.746399,
     "source": "etf_aggressive",
     "ticker": "VOO",
-    "value": 4111.279052720947
+    "value": 4521.841459622803
   },
   {
-    "cost_price": 644.3166120286179,
+    "cost_price": 644.5686400168133,
     "current_price": 611.6099853515625,
     "date": "2026-06-26",
-    "profit_loss": -50.761731214843735,
-    "return_pct": -0.05076173121484374,
-    "shares": 1.552032,
+    "profit_loss": -56.24617438854966,
+    "return_pct": -0.05113288580777242,
+    "shares": 1.706567666666667,
     "source": "etf_balanced",
     "ticker": "SMH",
-    "value": 949.2382687851563
+    "value": 1043.7538256114503
   },
   {
-    "cost_price": 120.3836047642534,
+    "cost_price": 120.41501326236057,
     "current_price": 113.86000061035156,
     "date": "2026-06-26",
-    "profit_loss": -216.76055195977824,
-    "return_pct": -0.05419013798994456,
-    "shares": 33.227115999999995,
+    "profit_loss": -239.52209020646387,
+    "return_pct": -0.05443683868328724,
+    "shares": 36.54029411111111,
     "source": "etf_balanced",
     "ticker": "VGT",
-    "value": 3783.2394480402218
+    "value": 4160.477909793536
   },
   {
-    "cost_price": 692.875658474382,
+    "cost_price": 692.9623042365741,
     "current_price": 670.260009765625,
     "date": "2026-06-26",
-    "profit_loss": -163.20135100830066,
-    "return_pct": -0.03264027020166013,
-    "shares": 7.216302,
+    "profit_loss": -180.1867415108236,
+    "return_pct": -0.03276122572924065,
+    "shares": 7.9369396666666665,
     "source": "etf_balanced",
     "ticker": "VOO",
-    "value": 4836.798648991699
+    "value": 5319.813258489176
   },
   {
-    "cost_price": 644.3174423174811,
+    "cost_price": 644.5694373820324,
     "current_price": 611.6099853515625,
     "date": "2026-06-26",
-    "profit_loss": -25.38147721740728,
-    "return_pct": -0.05076295443481456,
-    "shares": 0.7760149999999999,
+    "profit_loss": -28.12373278259281,
+    "return_pct": -0.0511340596047142,
+    "shares": 0.8532827777777777,
     "source": "etf_conservative",
     "ticker": "SMH",
-    "value": 474.6185227825927
+    "value": 521.8762672174072
   },
   {
-    "cost_price": 120.38360269393739,
+    "cost_price": 120.41501122234891,
     "current_price": 113.86000061035156,
     "date": "2026-06-26",
-    "profit_loss": -189.66542603480548,
-    "return_pct": -0.054190121724230135,
-    "shares": 29.073726999999998,
+    "profit_loss": -209.58176725648855,
+    "return_pct": -0.054436822664023,
+    "shares": 31.97275788888889,
     "source": "etf_conservative",
     "ticker": "VGT",
-    "value": 3310.3345739651945
+    "value": 3640.4182327435115
   },
   {
-    "cost_price": 692.8757704922917,
+    "cost_price": 692.9624125638053,
     "current_price": 670.260009765625,
     "date": "2026-06-26",
-    "profit_loss": -195.84255957397454,
-    "return_pct": -0.03264042659566242,
-    "shares": 8.659561,
+    "profit_loss": -216.22508775566985,
+    "return_pct": -0.03276137693267725,
+    "shares": 9.52432611111111,
     "source": "etf_conservative",
     "ticker": "VOO",
-    "value": 5804.1574404260255
+    "value": 6383.77491224433
   },
   {
     "cost_price": 737.3615939016775,

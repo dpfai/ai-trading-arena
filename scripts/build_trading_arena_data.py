@@ -285,6 +285,8 @@ def build_etf(prices: pd.DataFrame) -> tuple[list[dict[str, Any]], list[dict[str
         if not portfolio:
             continue
         txs = sorted(portfolio.get("transactions", []), key=lambda t: (t.get("date", ""), t.get("etf", "")))
+        initial_total = sum(float(tx.get("amount") or 0) for tx in txs if tx.get("type") == "initial_investment")
+        initial_scale = INITIAL_CASH / initial_total if initial_total > 0 else 1.0
         positions: dict[str, dict[str, float]] = defaultdict(lambda: {"shares": 0.0, "cost": 0.0})
         cash = INITIAL_CASH
         total_contributed = INITIAL_CASH
@@ -298,6 +300,9 @@ def build_etf(prices: pd.DataFrame) -> tuple[list[dict[str, Any]], list[dict[str
                 amount = float(tx.get("amount") or 0)
                 tx_price = float(tx.get("price") or 0)
                 shares = float(tx.get("shares") or (amount / tx_price if tx_price else 0))
+                if tx.get("type") == "initial_investment":
+                    amount *= initial_scale
+                    shares *= initial_scale
                 if ticker and amount > 0 and shares > 0:
                     if tx.get("type") == "weekly_investment" and tx["date"] not in contributed_dates:
                         cash += WEEKLY_CONTRIBUTION
