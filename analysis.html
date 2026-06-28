@@ -23,6 +23,12 @@
     th { text-align:left; font-size:11px; text-transform:uppercase; letter-spacing:.5px; color:var(--muted); padding:8px; border-bottom:1px solid var(--border); }
     td { padding:10px 8px; border-bottom:1px solid var(--border); font-size:13px; vertical-align:top; }
     .reason-cell { color: var(--muted); max-width: 360px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+    .data-health { display:grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+    .data-health-item { background: rgba(15, 15, 26, .72); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; }
+    .data-health-item span { display:block; color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: .4px; }
+    .data-health-item strong { display:block; margin-top: 3px; font-size: 13px; color: var(--text); }
+    @media (max-width: 768px) { .data-health { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   </style>
 </head>
 <body class="min-h-screen">
@@ -48,6 +54,8 @@
     </div>
 
     <section class="mb-8">
+      <div id="dataHealth" class="data-health mb-8"></div>
+
       <h2 class="text-lg font-semibold mb-4">Strategy Performance</h2>
       <div id="performanceGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
     </section>
@@ -76,6 +84,7 @@
   <footer class="border-t border-[#233] py-8 text-center text-sm text-[var(--muted)]">
     <p>AI Trading Arena · For educational purposes only. Not financial advice.</p>
   </footer>
-  <script src="analysis.js?v=20260628-14"></script>
+  <script src="common.js?v=20260628-15"></script>
+  <script src="analysis.js?v=20260628-15"></script>
 </body>
 </html>

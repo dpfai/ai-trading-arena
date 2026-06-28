@@ -1,38 +1,8 @@
 // AI Trading Arena - Trading Page JS
-const ASSET_VERSION = '20260628-14';
-const withVersion = (path) => `${path}?v=${ASSET_VERSION}`;
-const RANGE_DAYS = { all: null, '7': 7, '30': 30, '90': 90, '180': 180, '365': 365 };
-const STRATEGY_META = {
-  ai_analyst:       { name: 'AI Analyst',       color: '#ff6b6b' },
-  quant_learning:   { name: 'Quant AI',          color: '#4ecdc4' },
-  etf_aggressive:   { name: 'DCA Aggressive',    color: '#a78bfa' },
-  etf_balanced:     { name: 'DCA Balanced',      color: '#c4b5fd' },
-  etf_conservative: { name: 'DCA Conservative',  color: '#ddd6fe' },
-  spy:              { name: 'S&P 500',           color: '#fbbf24' },
-};
 
 async function loadData() {
-  const results = await Promise.allSettled([
-    fetch(withVersion('data/signals.json')).then(r => r.json()),
-    fetch(withVersion('data/equity_curve.json')).then(r => r.json()),
-    fetch(withVersion('data/holdings.json')).then(r => r.json()),
-  ]);
-  const [signals, equity, holdings] = results.map(r => {
-    if (r.status === 'fulfilled') return r.value;
-    console.error('Fetch error:', r.reason);
-    return [];
-  });
-  return { signals, equity, holdings };
-}
-
-function fmtMoney(v) {
-  if (v == null || isNaN(v)) return '—';
-  return '$' + Number(v).toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
-}
-function fmtPct(v) {
-  if (v == null || isNaN(v)) return '—';
-  const sign = v >= 0 ? '+' : '';
-  return sign + (v * 100).toFixed(2) + '%';
+  const data = await loadArenaData(['signals', 'equity_curve', 'holdings', 'health']);
+  return { signals: data.signals, equity: data.equity_curve, holdings: data.holdings, health: data.health };
 }
 
 let equityChart = null;
@@ -43,14 +13,7 @@ function renderEquityChart(equityData, range) {
   const ctx = document.getElementById('equityChart');
   if (!ctx || !equityData.length || typeof Chart === 'undefined') return;
   
-  let filtered = equityData;
-  if (range !== 'all' && RANGE_DAYS[range]) {
-    const dates = [...new Set(equityData.map(d => d.date))].sort();
-    const end = new Date(`${dates[dates.length - 1]}T00:00:00`);
-    const cutoff = new Date(end);
-    cutoff.setDate(cutoff.getDate() - RANGE_DAYS[range]);
-    filtered = equityData.filter(d => new Date(`${d.date}T00:00:00`) >= cutoff);
-  }
+  const filtered = filterByRange(equityData, range);
   
   const bySource = {};
   filtered.forEach(d => { if (!bySource[d.source]) bySource[d.source] = []; bySource[d.source].push(d); });
@@ -110,10 +73,6 @@ function renderHoldings(holdings) {
   }).join('');
 }
 
-function signalDates(signals) {
-  return [...new Set(signals.map(s => s.date).filter(Boolean))].sort((a, b) => b.localeCompare(a));
-}
-
 function setupSignalDateFilter(signals) {
   const select = document.getElementById('signalDateFilter');
   if (!select) return;
@@ -163,6 +122,7 @@ function renderSignals(signals, date) {
 
 document.addEventListener('DOMContentLoaded', async function() {
   const data = await loadData();
+  renderDataHealth({ equity: data.equity, holdings: data.holdings, signals: data.signals, health: data.health });
   renderEquityChart(data.equity, currentRange);
   renderHoldings(data.holdings);
   setupSignalDateFilter(data.signals);

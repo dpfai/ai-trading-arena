@@ -1,38 +1,6 @@
-const ASSET_VERSION = '20260628-14';
-const withVersion = (path) => `${path}?v=${ASSET_VERSION}`;
-const STRATEGY_META = {
-  ai_analyst: { name: 'AI Analyst', color: '#ff6b6b' },
-  quant_learning: { name: 'Quant AI', color: '#4ecdc4' },
-  etf_aggressive: { name: 'DCA Aggressive', color: '#a78bfa' },
-  etf_balanced: { name: 'DCA Balanced', color: '#c4b5fd' },
-  etf_conservative: { name: 'DCA Conservative', color: '#ddd6fe' },
-  spy: { name: 'S&P 500', color: '#fbbf24' },
-};
-
-function fmtMoney(v) {
-  if (v == null || isNaN(v)) return '-';
-  return '$' + Number(v).toLocaleString('en-US', { maximumFractionDigits: 0 });
-}
-function fmtPct(v) {
-  if (v == null || isNaN(v)) return '-';
-  const sign = v >= 0 ? '+' : '';
-  return `${sign}${(v * 100).toFixed(2)}%`;
-}
-function latestBySource(rows) {
-  const latest = {};
-  rows.forEach(row => {
-    if (!latest[row.source] || row.date > latest[row.source].date) latest[row.source] = row;
-  });
-  return latest;
-}
-
 async function loadData() {
-  const [equity, holdings, signals] = await Promise.all([
-    fetch(withVersion('data/equity_curve.json')).then(r => r.json()),
-    fetch(withVersion('data/holdings.json')).then(r => r.json()),
-    fetch(withVersion('data/signals.json')).then(r => r.json()),
-  ]);
-  return { equity, holdings, signals };
+  const data = await loadArenaData(['equity_curve', 'holdings', 'signals', 'health']);
+  return { equity: data.equity_curve, holdings: data.holdings, signals: data.signals, health: data.health };
 }
 
 function renderPerformance(equity) {
@@ -102,6 +70,7 @@ function renderActivitySummary(signals) {
 document.addEventListener('DOMContentLoaded', async () => {
   try {
     const data = await loadData();
+    renderDataHealth({ equity: data.equity, holdings: data.holdings, signals: data.signals, health: data.health });
     renderPerformance(data.equity);
     renderHoldings(data.holdings);
     renderActivitySummary(data.signals);

@@ -31,6 +31,12 @@
     .filter-btn.active { background: var(--quant-ai); color: var(--bg); border-color: var(--quant-ai); }
     .filter-btn:hover { border-color: var(--quant-ai); }
     .select-control { background: #101827; color: var(--text); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; font-size: 13px; min-width: 150px; }
+
+    .data-health { display:grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+    .data-health-item { background: rgba(15, 15, 26, .72); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; }
+    .data-health-item span { display:block; color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: .4px; }
+    .data-health-item strong { display:block; margin-top: 3px; font-size: 13px; color: var(--text); }
+    @media (max-width: 768px) { .data-health { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   </style>
 </head>
 <body class="min-h-screen">
@@ -52,6 +58,8 @@
   <div class="max-w-6xl mx-auto px-4 py-8">
     <h1 class="text-2xl font-bold mb-2">Trading Arena</h1>
     <p class="text-[var(--muted)] text-sm mb-8">Signals are rebuilt from source data and shown by selected trading date.</p>
+
+    <div id="dataHealth" class="data-health mb-8"></div>
 
     <!-- Detailed Equity Chart -->
     <div class="card p-6 mb-8">
@@ -109,7 +117,8 @@
     </div>
   </div>
 
-  <script src="chart.min.js?v=20260628-14"></script>
-  <script src="trading.js?v=20260628-14"></script>
+  <script src="chart.min.js?v=20260628-15"></script>
+  <script src="common.js?v=20260628-15"></script>
+  <script src="trading.js?v=20260628-15"></script>
 </body>
 </html>

@@ -54,6 +54,14 @@ def load_output(filename: str) -> list[dict]:
     return rows
 
 
+def load_health() -> dict:
+    path = ROOT / "data" / "health.json"
+    health = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(health, dict):
+        raise RuntimeError("health.json must contain a JSON object")
+    return health
+
+
 def assert_complete_sources(filename: str, rows: list[dict]) -> None:
     sources = {row.get("source") for row in rows if isinstance(row, dict)}
     missing = EXPECTED_SOURCES - sources
@@ -121,6 +129,21 @@ def assert_ai_analysis_fresh(end: str) -> None:
         )
 
 
+
+def assert_health(health: dict, equity_rows: list[dict], holdings_rows: list[dict]) -> None:
+    latest_market = max(row["date"] for row in equity_rows)
+    if health.get("latest_market_date") != latest_market:
+        raise RuntimeError(f"health.json latest_market_date mismatch: {health}")
+    if health.get("source_count") != len(EXPECTED_SOURCES):
+        raise RuntimeError(f"health.json source_count mismatch: {health}")
+    for field in ["carried_forward_prices", "latest_carried_forward_prices"]:
+        value = health.get(field)
+        if value is None or not isinstance(value, int) or value < 0:
+            raise RuntimeError(f"health.json invalid {field}: {health}")
+    if not health.get("latest_ai_analysis_date"):
+        raise RuntimeError(f"health.json missing latest_ai_analysis_date: {health}")
+
+
 def validate_outputs(end: str) -> None:
     outputs = {
         filename: load_output(filename)
@@ -130,6 +153,7 @@ def validate_outputs(end: str) -> None:
         assert_complete_sources(filename, rows)
         assert_numeric_quality(filename, rows)
     assert_equity_dates(outputs["equity_curve.json"])
+    assert_health(load_health(), outputs["equity_curve.json"], outputs["holdings.json"])
     assert_ai_analysis_fresh(end)
     print("Trading Arena output validation passed.")
 

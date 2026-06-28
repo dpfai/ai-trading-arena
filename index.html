@@ -32,6 +32,12 @@
     td { padding: 10px 8px; border-bottom: 1px solid var(--border); font-size: 13px; vertical-align: middle; }
     .glow { text-shadow: 0 0 28px rgba(78,205,196,.22); }
     @media (max-width: 768px) { .chart-container { height: 300px; } }
+
+    .data-health { display:grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+    .data-health-item { background: rgba(15, 15, 26, .72); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; }
+    .data-health-item span { display:block; color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: .4px; }
+    .data-health-item strong { display:block; margin-top: 3px; font-size: 13px; color: var(--text); }
+    @media (max-width: 768px) { .data-health { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   </style>
   
 </head>
@@ -66,6 +72,11 @@
       <span class="badge badge-buy">Live tracking since Jun 15, 2026</span>
       <span class="badge badge-hold">Fully transparent</span>
     </div>
+  </section>
+
+
+  <section class="max-w-6xl mx-auto px-4 mb-8">
+    <div id="dataHealth" class="data-health"></div>
   </section>
 
   <!-- Equity Curve -->
@@ -106,7 +117,8 @@
     <p class="mt-1">Data updates on market trading days after US market close.</p>
   </footer>
 
-  <script src="chart.min.js?v=20260628-14"></script>
-  <script src="app.js?v=20260628-14"></script>
+  <script src="chart.min.js?v=20260628-15"></script>
+  <script src="common.js?v=20260628-15"></script>
+  <script src="app.js?v=20260628-15"></script>
 </body>
 </html>

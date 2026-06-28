@@ -1,55 +1,14 @@
 // AI Trading Arena - Main JS
-const ASSET_VERSION = '20260628-14';
-const withVersion = (path) => `${path}?v=${ASSET_VERSION}`;
-const STRATEGY_META = {
-  ai_analyst:       { name: 'AI Analyst',       color: '#ff6b6b', desc: 'LLM-based market analysis & trading' },
-  quant_learning:   { name: 'Quant AI',          color: '#4ecdc4', desc: 'ML multi-signal voting system' },
-  etf_aggressive:   { name: 'DCA Aggressive',    color: '#a78bfa', desc: '42.5/42.5/15 VOO/VGT/SMH' },
-  etf_balanced:     { name: 'DCA Balanced',      color: '#c4b5fd', desc: '50/40/10 VOO/VGT/SMH' },
-  etf_conservative: { name: 'DCA Conservative',  color: '#ddd6fe', desc: '60/35/5 VOO/VGT/SMH' },
-  spy:              { name: 'S&P 500',           color: '#fbbf24', desc: 'Buy-and-hold benchmark' },
-};
-const RANGE_DAYS = { all: null, '7': 7, '30': 30, '90': 90, '180': 180, '365': 365 };
 
 async function loadData() {
-  const results = await Promise.allSettled([
-    fetch(withVersion('data/strategies.json')).then(r => r.json()),
-    fetch(withVersion('data/signals.json')).then(r => r.json()),
-    fetch(withVersion('data/equity_curve.json')).then(r => r.json()),
-    fetch(withVersion('data/holdings.json')).then(r => r.json()),
-  ]);
-  const [strategies, signals, equity, holdings] = results.map(r => {
-    if (r.status === 'fulfilled') return r.value;
-    console.error('Fetch error:', r.reason);
-    return [];
-  });
-  return { strategies, signals, equity, holdings };
-}
-
-function fmtMoney(v) {
-  if (v == null || isNaN(v)) return '-';
-  return '$' + Number(v).toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
-}
-function fmtPct(v) {
-  if (v == null || isNaN(v)) return '-';
-  const sign = v >= 0 ? '+' : '';
-  return sign + (v * 100).toFixed(2) + '%';
-}
-function latestBySource(rows) {
-  const bySource = {};
-  rows.forEach(row => {
-    if (!bySource[row.source] || row.date > bySource[row.source].date) bySource[row.source] = row;
-  });
-  return bySource;
-}
-function filterByRange(equityData, range) {
-  if (range === 'all' || !RANGE_DAYS[range]) return equityData;
-  const dates = equityData.map(d => d.date).sort();
-  if (!dates.length) return equityData;
-  const end = new Date(`${dates[dates.length - 1]}T00:00:00`);
-  const cutoff = new Date(end);
-  cutoff.setDate(cutoff.getDate() - RANGE_DAYS[range]);
-  return equityData.filter(d => new Date(`${d.date}T00:00:00`) >= cutoff);
+  const data = await loadArenaData(['strategies', 'signals', 'equity_curve', 'holdings', 'health']);
+  return {
+    strategies: data.strategies,
+    signals: data.signals,
+    equity: data.equity_curve,
+    holdings: data.holdings,
+    health: data.health,
+  };
 }
 
 let equityChart = null;
@@ -154,6 +113,7 @@ function renderSignals(signals) {
 
 document.addEventListener('DOMContentLoaded', async function() {
   const data = await loadData();
+  renderDataHealth({ equity: data.equity, holdings: data.holdings, signals: data.signals, health: data.health });
   renderEquityChart(data.equity, currentRange);
   renderStrategyCards(data.equity, data.signals);
   renderSignals(data.signals);

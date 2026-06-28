@@ -646,6 +646,30 @@ def validate(equity: list[dict[str, Any]]) -> None:
         raise RuntimeError(f"Missing equity sources: {sorted(missing)}")
 
 
+def latest_date(rows: list[dict[str, Any]]) -> str | None:
+    dates = sorted(row.get("date") for row in rows if row.get("date"))
+    return dates[-1] if dates else None
+
+
+def health_payload(
+    equity: list[dict[str, Any]],
+    holdings: list[dict[str, Any]],
+    signals: list[dict[str, Any]],
+    analysis_items: list[dict[str, Any]],
+) -> dict[str, Any]:
+    latest_holdings_date = latest_date(holdings)
+    latest_holdings = [row for row in holdings if row.get("date") == latest_holdings_date]
+    latest_ai_analysis = latest_date(analysis_items)
+    return {
+        "latest_market_date": latest_date(equity),
+        "latest_signal_date": latest_date(signals),
+        "latest_ai_analysis_date": latest_ai_analysis,
+        "source_count": len({row.get("source") for row in equity if row.get("source")}),
+        "carried_forward_prices": sum(1 for row in holdings if row.get("price_status") == "carried_forward"),
+        "latest_carried_forward_prices": sum(1 for row in latest_holdings if row.get("price_status") == "carried_forward"),
+    }
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Build AI Trading Arena JSON files.")
     parser.add_argument("--end", default=date.today().isoformat())
@@ -672,6 +696,7 @@ def main() -> None:
     write_json(DATA_DIR / "signals.json", signals)
     write_json(DATA_DIR / "equity_curve.json", equity)
     write_json(DATA_DIR / "holdings.json", holdings)
+    write_json(DATA_DIR / "health.json", health_payload(equity, holdings, signals, analysis_items))
 
     print("Generated Trading Arena data:")
     for source in sorted({row["source"] for row in equity}):
