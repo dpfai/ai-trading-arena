@@ -1,5 +1,5 @@
 // AI Trading Arena - Trading Page JS
-const ASSET_VERSION = '20260628-12';
+const ASSET_VERSION = '20260628-13';
 const withVersion = (path) => `${path}?v=${ASSET_VERSION}`;
 const RANGE_DAYS = { all: null, '7': 7, '30': 30, '90': 90, '180': 180, '365': 365 };
 const STRATEGY_META = {
@@ -38,6 +38,7 @@ function fmtPct(v) {
 
 let equityChart = null;
 let currentRange = 'all';
+let selectedSignalDate = null;
 
 function renderEquityChart(equityData, range) {
   const ctx = document.getElementById('equityChart');
@@ -110,11 +111,41 @@ function renderHoldings(holdings) {
   }).join('');
 }
 
-function renderSignals(signals) {
+function signalDates(signals) {
+  return [...new Set(signals.map(s => s.date).filter(Boolean))].sort((a, b) => b.localeCompare(a));
+}
+
+function setupSignalDateFilter(signals) {
+  const select = document.getElementById('signalDateFilter');
+  if (!select) return;
+  const dates = signalDates(signals);
+  selectedSignalDate = dates[0] || null;
+  select.innerHTML = dates.map(date => `<option value="${date}">${date}</option>`).join('');
+  select.disabled = dates.length === 0;
+  select.addEventListener('change', () => {
+    selectedSignalDate = select.value;
+    renderSignals(signals, selectedSignalDate);
+  });
+}
+
+function renderSignals(signals, date) {
   const tbody = document.getElementById('signalsBody');
+  const metaEl = document.getElementById('signalsMeta');
   if (!tbody) return;
-  if (!signals.length) { tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;color:#8892b0">No signals yet.</td></tr>'; return; }
-  const sorted = [...signals].sort((a, b) => b.date.localeCompare(a.date));
+  if (!signals.length) {
+    tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;color:#8892b0">No signals yet.</td></tr>';
+    if (metaEl) metaEl.textContent = 'No signal records available.';
+    return;
+  }
+  const activeDate = date || signalDates(signals)[0];
+  const sorted = signals
+    .filter(s => s.date === activeDate)
+    .sort((a, b) => a.source.localeCompare(b.source) || a.ticker.localeCompare(b.ticker));
+  if (metaEl) metaEl.textContent = activeDate ? `Showing ${sorted.length} signals for ${activeDate}.` : '';
+  if (!sorted.length) {
+    tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;color:#8892b0">No signals for this date.</td></tr>';
+    return;
+  }
   tbody.innerHTML = sorted.map(s => {
     const meta = STRATEGY_META[s.source] || { name: s.source, color: '#888' };
     const badgeClass = s.action === 'buy' ? 'badge-buy' : s.action === 'sell' ? 'badge-sell' : 'badge-hold';
@@ -126,7 +157,7 @@ function renderSignals(signals) {
       <td>${fmtMoney(s.price)}</td>
       <td>${s.shares?.toFixed(4) || '—'}</td>
       <td>${fmtMoney(s.amount)}</td>
-      <td style="font-size:11px;color:#8892b0;max-width:200px;overflow:hidden;text-overflow:ellipsis">${(s.reason || '').substring(0, 80)}</td>
+      <td style="font-size:11px;color:#8892b0;max-width:240px;overflow:hidden;text-overflow:ellipsis">${(s.reason || '').substring(0, 90)}</td>
     </tr>`;
   }).join('');
 }
@@ -136,7 +167,8 @@ document.addEventListener('DOMContentLoaded', async function() {
   const data = await loadData();
   renderEquityChart(data.equity, currentRange);
   renderHoldings(data.holdings);
-  renderSignals(data.signals);
+  setupSignalDateFilter(data.signals);
+  renderSignals(data.signals, selectedSignalDate);
   
   document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.addEventListener('click', () => {

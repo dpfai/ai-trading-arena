@@ -1,4 +1,4 @@
-const ASSET_VERSION = '20260628-12';
+const ASSET_VERSION = '20260628-13';
 const withVersion = (path) => `${path}?v=${ASSET_VERSION}`;
 const STRATEGY_META = {
   ai_analyst: { name: 'AI Analyst', color: '#ff6b6b' },
@@ -71,20 +71,30 @@ function renderHoldings(holdings) {
   }).join('');
 }
 
-function renderSignals(signals) {
-  const body = document.getElementById('signalSummary');
+function renderActivitySummary(signals) {
+  const body = document.getElementById('activitySummary');
+  if (!body) return;
   if (!signals.length) { body.innerHTML = '<tr><td colspan="6">No signals yet.</td></tr>'; return; }
-  const latest = [...signals].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 20);
-  body.innerHTML = latest.map(s => {
-    const meta = STRATEGY_META[s.source] || { name: s.source, color: '#888' };
-    const badge = s.action === 'buy' ? 'badge-buy' : s.action === 'sell' ? 'badge-sell' : 'badge-hold';
+  const bySource = {};
+  signals.forEach(signal => {
+    if (!bySource[signal.source]) bySource[signal.source] = { total: 0, buys: 0, sells: 0, latest: null };
+    const row = bySource[signal.source];
+    row.total += 1;
+    if (signal.action === 'buy') row.buys += 1;
+    if (signal.action === 'sell') row.sells += 1;
+    if (!row.latest || signal.date > row.latest.date) row.latest = signal;
+  });
+  body.innerHTML = Object.entries(bySource).sort((a, b) => a[0].localeCompare(b[0])).map(([source, row]) => {
+    const meta = STRATEGY_META[source] || { name: source, color: '#888' };
+    const latest = row.latest || {};
+    const badge = latest.action === 'buy' ? 'badge-buy' : latest.action === 'sell' ? 'badge-sell' : 'badge-hold';
     return `<tr>
-      <td>${s.date}</td>
       <td style="color:${meta.color}">${meta.name}</td>
-      <td><span class="badge ${badge}">${s.action.toUpperCase()}</span></td>
-      <td>${s.ticker}</td>
-      <td>${fmtMoney(s.amount)}</td>
-      <td class="reason-cell">${s.reason || ''}</td>
+      <td>${row.total}</td>
+      <td>${row.buys}</td>
+      <td>${row.sells}</td>
+      <td>${latest.date || '-'} ${latest.action ? `<span class="badge ${badge} ml-2">${latest.action.toUpperCase()}</span>` : ''}</td>
+      <td>${latest.ticker || '-'}</td>
     </tr>`;
   }).join('');
 }
@@ -94,7 +104,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const data = await loadData();
     renderPerformance(data.equity);
     renderHoldings(data.holdings);
-    renderSignals(data.signals);
+    renderActivitySummary(data.signals);
   } catch (err) {
     console.error(err);
     document.getElementById('performanceGrid').innerHTML = '<p class="text-[var(--muted)]">Analysis data failed to load.</p>';
