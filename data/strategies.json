@@ -1,0 +1,27 @@
+[
+  {
+    "initial_cash": 10000.0,
+    "name": "Quant Learning Four-Vote Composite",
+    "rules": {
+      "buy_25_pct_cash": "2 bullish votes",
+      "buy_50_pct_cash": "3-4 bullish votes",
+      "sell_100_pct_position": "3-4 bearish votes",
+      "sell_50_pct_position": "2 bearish votes"
+    },
+    "source": "quant_learning",
+    "sub_strategies": [
+      "MA20/MA50 crossover",
+      "RSI mean reversion 30/70",
+      "Bollinger Band 2 std",
+      "ML direction classifier"
+    ],
+    "tickers": [
+      "SPY",
+      "QQQ",
+      "VOO",
+      "VGT",
+      "SMH"
+    ],
+    "weekly_contribution": 500.0
+  }
+]

@@ -1,0 +1,74 @@
+[
+  {
+    "cash": 3164.0625,
+    "date": "2026-06-15",
+    "positions_value": 6835.9375,
+    "return_pct": 0.0,
+    "source": "quant_learning",
+    "total_cost": 6835.9375,
+    "total_value": 10000.0
+  },
+  {
+    "cash": 1159.332275390625,
+    "date": "2026-06-16",
+    "positions_value": 9256.350304733132,
+    "return_pct": 0.041568258012375736,
+    "source": "quant_learning",
+    "total_cost": 9340.667724609375,
+    "total_value": 10415.682580123757
+  },
+  {
+    "cash": 366.81997776031494,
+    "date": "2026-06-17",
+    "positions_value": 9947.240614072181,
+    "return_pct": 0.03140605918324968,
+    "source": "quant_learning",
+    "total_cost": 10133.180022239685,
+    "total_value": 10314.060591832496
+  },
+  {
+    "cash": 116.06413358822465,
+    "date": "2026-06-18",
+    "positions_value": 10355.402331006606,
+    "return_pct": 0.047146646459482966,
+    "source": "quant_learning",
+    "total_cost": 10383.935866411775,
+    "total_value": 10471.46646459483
+  },
+  {
+    "cash": 36.723417268149205,
+    "date": "2026-06-22",
+    "positions_value": 10412.673533776484,
+    "return_pct": 0.044939695104463384,
+    "source": "quant_learning",
+    "total_cost": 10463.27658273185,
+    "total_value": 10449.396951044633
+  },
+  {
+    "cash": 226.43019166000045,
+    "date": "2026-06-23",
+    "positions_value": 10483.34431280695,
+    "return_pct": 0.0709774504466949,
+    "source": "quant_learning",
+    "total_cost": 10773.569808339998,
+    "total_value": 10709.77450446695
+  },
+  {
+    "cash": 71.643927829922,
+    "date": "2026-06-24",
+    "positions_value": 10609.369227551248,
+    "return_pct": 0.06810131553811694,
+    "source": "quant_learning",
+    "total_cost": 10928.356072170078,
+    "total_value": 10681.01315538117
+  },
+  {
+    "cash": 22.668586539936257,
+    "date": "2026-06-25",
+    "positions_value": 10692.264508703427,
+    "return_pct": 0.07149330952433619,
+    "source": "quant_learning",
+    "total_cost": 10977.331413460062,
+    "total_value": 10714.933095243363
+  }
+]
