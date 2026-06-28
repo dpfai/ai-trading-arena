@@ -27,6 +27,9 @@
     .filter-btn { padding: 4px 10px; border-radius: 6px; font-size: 12px; border: 1px solid var(--border); background: transparent; color: var(--muted); cursor: pointer; transition: all .2s; }
     .filter-btn.active { background: var(--quant-ai); color: var(--bg); border-color: var(--quant-ai); }
     .filter-btn:hover { border-color: var(--quant-ai); }
+    table { width: 100%; border-collapse: collapse; }
+    th { text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: .5px; color: var(--muted); padding: 8px; border-bottom: 1px solid var(--border); }
+    td { padding: 10px 8px; border-bottom: 1px solid var(--border); font-size: 13px; vertical-align: middle; }
     .glow { text-shadow: 0 0 28px rgba(78,205,196,.22); }
     @media (max-width: 768px) { .chart-container { height: 300px; } }
   </style>
@@ -93,7 +96,7 @@
   <section class="max-w-6xl mx-auto px-4 mb-16">
     <div class="card p-6">
       <h2 class="text-lg font-semibold mb-4">Latest Trading Signals</h2>
-      <div id="signalsList" class="space-y-1"></div>
+      <div id="signalsList" class="overflow-x-auto"></div>
     </div>
   </section>
 
@@ -103,7 +106,7 @@
     <p class="mt-1">Data updates daily after US market close.</p>
   </footer>
 
-  <script src="chart.min.js?v=20260628-4"></script>
-  <script src="app.js?v=20260628-4"></script>
+  <script src="chart.min.js?v=20260628-5"></script>
+  <script src="app.js?v=20260628-5"></script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 // AI Trading Arena - Main JS
-const ASSET_VERSION = '20260628-4';
+const ASSET_VERSION = '20260628-5';
 const withVersion = (path) => `${path}?v=${ASSET_VERSION}`;
 const STRATEGY_META = {
   ai_analyst:       { name: 'AI Analyst',       color: '#ff6b6b', desc: 'LLM-based market analysis & trading' },
@@ -135,23 +135,22 @@ function renderSignals(signals) {
   if (!container) return;
   if (!signals.length) { container.innerHTML = '<p style="color:#8892b0;text-align:center;padding:20px">No signals yet.</p>'; return; }
   const sorted = [...signals].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 20);
-  container.innerHTML = sorted.map(s => {
+  const rows = sorted.map(s => {
     const meta = STRATEGY_META[s.source] || { name: s.source, color: '#888' };
     const badgeClass = s.action === 'buy' ? 'badge-buy' : s.action === 'sell' ? 'badge-sell' : 'badge-hold';
-    return `
-      <div class="signal-row" style="display:flex;align-items:center;justify-content:space-between;padding:8px;border-bottom:1px solid #233;gap:12px">
-        <div style="display:flex;align-items:center;gap:12px;min-width:0;flex-wrap:wrap">
-          <span style="color:#8892b0;font-size:12px;width:80px">${s.date}</span>
-          <span style="color:${meta.color};font-size:12px;font-weight:500">${meta.name}</span>
-          <span class="badge ${badgeClass}">${s.action.toUpperCase()}</span>
-          <span style="font-weight:500">${s.ticker}</span>
-        </div>
-        <div style="display:flex;gap:16px;color:#8892b0;font-size:12px;white-space:nowrap">
-          <span>${fmtMoney(s.price)}</span>
-          <span>${s.shares?.toFixed(2) || '-' } sh</span>
-        </div>
-      </div>`;
+    return `<tr>
+      <td style="color:#8892b0;white-space:nowrap">${s.date}</td>
+      <td style="color:${meta.color};font-weight:500;white-space:nowrap">${meta.name}</td>
+      <td><span class="badge ${badgeClass}">${s.action.toUpperCase()}</span></td>
+      <td style="font-weight:600">${s.ticker}</td>
+      <td>${fmtMoney(s.price)}</td>
+      <td>${s.shares?.toFixed(2) || '-'}</td>
+    </tr>`;
   }).join('');
+  container.innerHTML = `<table>
+    <thead><tr><th>Date</th><th>Strategy</th><th>Action</th><th>Ticker</th><th>Price</th><th>Shares</th></tr></thead>
+    <tbody>${rows}</tbody>
+  </table>`;
 }
 
 document.addEventListener('DOMContentLoaded', async function() {
