@@ -7,11 +7,22 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    :root { --bg: #0f0f1a; --card: #16213e; --text: #e0e0e0; --muted: #8892b0; --border: #233; --quant-ai: #4ecdc4; }
+    :root { --bg: #0f0f1a; --card: #16213e; --text: #e0e0e0; --muted: #8892b0; --border: #233; --quant-ai: #4ecdc4; --loss: #ffa502; }
     body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; }
     .nav-link { color: #c0cad8 !important; transition: color .2s; }
     .nav-link:hover { color: #ffffff !important; }
     .nav-link.active { color: #4ecdc4 !important; }
+    .metric { display:flex; justify-content:space-between; gap:16px; font-size:13px; padding:5px 0; border-bottom:1px solid rgba(35,51,51,.65); }
+    .metric span { color: var(--muted); }
+    .badge { padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+    .badge-buy { background: rgba(78,205,196,.15); color: var(--quant-ai); }
+    .badge-sell { background: rgba(255,165,2,.15); color: var(--loss); }
+    .badge-hold { background: rgba(136,146,176,.15); color: var(--muted); }
+    table { width: 100%; border-collapse: collapse; }
+    th { text-align:left; font-size:11px; text-transform:uppercase; letter-spacing:.5px; color:var(--muted); padding:8px; border-bottom:1px solid var(--border); }
+    td { padding:10px 8px; border-bottom:1px solid var(--border); font-size:13px; vertical-align:top; }
+    .reason-cell { color: var(--muted); max-width: 360px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   </style>
 </head>
 <body class="min-h-screen">
@@ -29,12 +40,42 @@
       </div>
     </div>
   </nav>
-  <div class="max-w-4xl mx-auto px-4 py-16 text-center">
-    <h1 class="text-3xl font-bold mb-4">Analysis</h1>
-    <p class="text-[var(--muted)]">Daily market analysis articles coming soon.</p>
-  </div>
+
+  <main class="max-w-6xl mx-auto px-4 py-8">
+    <div class="mb-8">
+      <h1 class="text-2xl font-bold mb-2">Analysis</h1>
+      <p class="text-[var(--muted)] text-sm">Latest strategy performance, current exposure, and recent trading activity from the tracked data.</p>
+    </div>
+
+    <section class="mb-8">
+      <h2 class="text-lg font-semibold mb-4">Strategy Performance</h2>
+      <div id="performanceGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+    </section>
+
+    <section class="card p-6 mb-8">
+      <h2 class="text-lg font-semibold mb-4">Current Largest Holdings</h2>
+      <div class="overflow-x-auto">
+        <table>
+          <thead><tr><th>Date</th><th>Strategy</th><th>Ticker</th><th>Value</th><th>Return</th></tr></thead>
+          <tbody id="holdingsSummary"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card p-6">
+      <h2 class="text-lg font-semibold mb-4">Recent Signals</h2>
+      <div class="overflow-x-auto">
+        <table>
+          <thead><tr><th>Date</th><th>Strategy</th><th>Action</th><th>Ticker</th><th>Amount</th><th>Reason</th></tr></thead>
+          <tbody id="signalSummary"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
   <footer class="border-t border-[#233] py-8 text-center text-sm text-[var(--muted)]">
     <p>AI Trading Arena · For educational purposes only. Not financial advice.</p>
   </footer>
+  <script src="analysis.js?v=20260628-4"></script>
 </body>
 </html>

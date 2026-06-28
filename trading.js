@@ -1,4 +1,7 @@
 // AI Trading Arena - Trading Page JS
+const ASSET_VERSION = '20260628-4';
+const withVersion = (path) => `${path}?v=${ASSET_VERSION}`;
+const RANGE_DAYS = { all: null, '7': 7, '30': 30, '90': 90, '180': 180, '365': 365 };
 const STRATEGY_META = {
   ai_analyst:       { name: 'AI Analyst',       color: '#ff6b6b' },
   quant_learning:   { name: 'Quant AI',          color: '#4ecdc4' },
@@ -10,9 +13,9 @@ const STRATEGY_META = {
 
 async function loadData() {
   const results = await Promise.allSettled([
-    fetch('data/signals.json').then(r => r.json()),
-    fetch('data/equity_curve.json').then(r => r.json()),
-    fetch('data/holdings.json').then(r => r.json()),
+    fetch(withVersion('data/signals.json')).then(r => r.json()),
+    fetch(withVersion('data/equity_curve.json')).then(r => r.json()),
+    fetch(withVersion('data/holdings.json')).then(r => r.json()),
   ]);
   const [signals, equity, holdings] = results.map(r => {
     if (r.status === 'fulfilled') return r.value;
@@ -41,11 +44,12 @@ function renderEquityChart(equityData, range) {
   if (!ctx || !equityData.length || typeof Chart === 'undefined') return;
   
   let filtered = equityData;
-  if (range !== 'all') {
-    const days = parseInt(range);
+  if (range !== 'all' && RANGE_DAYS[range]) {
     const dates = [...new Set(equityData.map(d => d.date))].sort();
-    const cutoff = dates.slice(-days);
-    filtered = equityData.filter(d => cutoff.includes(d.date));
+    const end = new Date(`${dates[dates.length - 1]}T00:00:00`);
+    const cutoff = new Date(end);
+    cutoff.setDate(cutoff.getDate() - RANGE_DAYS[range]);
+    filtered = equityData.filter(d => new Date(`${d.date}T00:00:00`) >= cutoff);
   }
   
   const bySource = {};
@@ -56,7 +60,7 @@ function renderEquityChart(equityData, range) {
     const dateMap = {};
     rows.forEach(r => { dateMap[r.date] = r.total_value; });
     return {
-      label: meta.name, data: allDates.map(d => dateMap[d] || null),
+      label: meta.name, data: allDates.map(d => dateMap[d] ?? null),
       borderColor: meta.color, backgroundColor: meta.color + '20',
       borderWidth: 2, pointRadius: 3, pointHoverRadius: 6, tension: 0.3, spanGaps: true,
     };
@@ -86,7 +90,10 @@ function renderHoldings(holdings) {
   const tbody = document.getElementById('holdingsBody');
   if (!tbody) return;
   if (!holdings.length) { tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;color:#8892b0">No holdings data.</td></tr>'; return; }
-  const sorted = [...holdings].sort((a, b) => b.date.localeCompare(a.date) || a.source.localeCompare(b.source));
+  const latestDate = [...new Set(holdings.map(h => h.date))].sort().pop();
+  const sorted = holdings
+    .filter(h => h.date === latestDate)
+    .sort((a, b) => a.source.localeCompare(b.source) || b.value - a.value || a.ticker.localeCompare(b.ticker));
   tbody.innerHTML = sorted.map(h => {
     const meta = STRATEGY_META[h.source] || { name: h.source, color: '#888' };
     const plColor = h.profit_loss >= 0 ? '#4ecdc4' : '#ffa502';

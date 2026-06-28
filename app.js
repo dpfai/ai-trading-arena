@@ -1,5 +1,5 @@
 // AI Trading Arena - Main JS
-const ASSET_VERSION = '20260628-3';
+const ASSET_VERSION = '20260628-4';
 const withVersion = (path) => `${path}?v=${ASSET_VERSION}`;
 const STRATEGY_META = {
   ai_analyst:       { name: 'AI Analyst',       color: '#ff6b6b', desc: 'LLM-based market analysis & trading' },
@@ -9,6 +9,7 @@ const STRATEGY_META = {
   etf_conservative: { name: 'DCA Conservative',  color: '#ddd6fe', desc: '60/35/5 VOO/VGT/SMH' },
   spy:              { name: 'S&P 500',           color: '#fbbf24', desc: 'Buy-and-hold benchmark' },
 };
+const RANGE_DAYS = { all: null, '7': 7, '30': 30, '90': 90, '180': 180, '365': 365 };
 
 async function loadData() {
   const results = await Promise.allSettled([
@@ -27,50 +28,66 @@ async function loadData() {
 }
 
 function fmtMoney(v) {
-  if (v == null || isNaN(v)) return '—';
+  if (v == null || isNaN(v)) return '-';
   return '$' + Number(v).toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
 }
 function fmtPct(v) {
-  if (v == null || isNaN(v)) return '—';
+  if (v == null || isNaN(v)) return '-';
   const sign = v >= 0 ? '+' : '';
   return sign + (v * 100).toFixed(2) + '%';
 }
+function latestBySource(rows) {
+  const bySource = {};
+  rows.forEach(row => {
+    if (!bySource[row.source] || row.date > bySource[row.source].date) bySource[row.source] = row;
+  });
+  return bySource;
+}
+function filterByRange(equityData, range) {
+  if (range === 'all' || !RANGE_DAYS[range]) return equityData;
+  const dates = equityData.map(d => d.date).sort();
+  if (!dates.length) return equityData;
+  const end = new Date(`${dates[dates.length - 1]}T00:00:00`);
+  const cutoff = new Date(end);
+  cutoff.setDate(cutoff.getDate() - RANGE_DAYS[range]);
+  return equityData.filter(d => new Date(`${d.date}T00:00:00`) >= cutoff);
+}
 
-function renderEquityChart(equityData) {
+let equityChart = null;
+let currentRange = 'all';
+
+function renderEquityChart(equityData, range = currentRange) {
   const ctx = document.getElementById('equityChart');
   if (!ctx) { console.error('equityChart canvas not found'); return; }
   if (!equityData.length) { console.error('No equity data'); return; }
   if (typeof Chart === 'undefined') { console.error('Chart.js not loaded'); return; }
-  
+
+  const filtered = filterByRange(equityData, range);
   const bySource = {};
-  equityData.forEach(d => { if (!bySource[d.source]) bySource[d.source] = []; bySource[d.source].push(d); });
-  const allDates = [...new Set(equityData.map(d => d.date))].sort();
+  filtered.forEach(d => { if (!bySource[d.source]) bySource[d.source] = []; bySource[d.source].push(d); });
+  const allDates = [...new Set(filtered.map(d => d.date))].sort();
   const datasets = Object.entries(bySource).map(([source, rows]) => {
     const meta = STRATEGY_META[source] || { color: '#888', name: source };
     const dateMap = {};
     rows.forEach(r => { dateMap[r.date] = r.total_value; });
     return {
-      label: meta.name, 
+      label: meta.name,
       data: allDates.map(d => dateMap[d] ?? null),
-      borderColor: meta.color, 
+      borderColor: meta.color,
       backgroundColor: meta.color + '20',
       borderWidth: 2, pointRadius: 3, pointHoverRadius: 6, tension: 0.3, spanGaps: true,
     };
   });
-  
-  console.log('Rendering chart with', datasets.length, 'datasets and', allDates.length, 'dates');
-  
-  new Chart(ctx, {
+
+  if (equityChart) equityChart.destroy();
+  equityChart = new Chart(ctx, {
     type: 'line',
     data: { labels: allDates, datasets },
     options: {
       responsive: true, maintainAspectRatio: false,
       interaction: { mode: 'index', intersect: false },
       plugins: {
-        legend: { 
-          display: true, position: 'top',
-          labels: { color: '#a0aec0', font: { size: 11 } } 
-        },
+        legend: { display: true, position: 'top', labels: { color: '#a0aec0', font: { size: 11 } } },
         tooltip: { backgroundColor: '#16213e', borderColor: '#233', borderWidth: 1,
           callbacks: { label: (c) => `${c.dataset.label}: ${fmtMoney(c.parsed.y)}` } },
       },
@@ -85,16 +102,16 @@ function renderEquityChart(equityData) {
 function renderStrategyCards(equityData, signals) {
   const container = document.getElementById('strategyCards');
   if (!container) return;
-  const bySource = {};
-  equityData.forEach(d => { if (!bySource[d.source]) bySource[d.source] = []; bySource[d.source].push(d); });
+  const latest = latestBySource(equityData);
   const signalCount = {};
-  signals.forEach(s => { if (!signalCount[s.source]) signalCount[s.source] = 0; signalCount[s.source]++; });
-  const cards = Object.entries(STRATEGY_META).map(([key, meta]) => {
-    const rows = bySource[key] || [];
-    const latest = rows[rows.length - 1];
-    const first = rows[0];
-    const returnPct = latest && first ? (latest.total_value - first.total_value) / first.total_value : 0;
+  signals.forEach(s => { signalCount[s.source] = (signalCount[s.source] || 0) + 1; });
+  const sourceKeys = Object.keys(latest).sort((a, b) => (STRATEGY_META[a]?.name || a).localeCompare(STRATEGY_META[b]?.name || b));
+  if (!sourceKeys.length) { container.innerHTML = '<p style="color:#8892b0">No strategy data.</p>'; return; }
+  container.innerHTML = sourceKeys.map(key => {
+    const meta = STRATEGY_META[key] || { name: key, color: '#888', desc: key };
+    const row = latest[key];
     const count = signalCount[key] || 0;
+    const returnColor = row.return_pct >= 0 ? '#4ecdc4' : '#ffa502';
     return `
       <div class="strategy-card card p-5">
         <div class="flex items-center gap-2 mb-3">
@@ -102,14 +119,15 @@ function renderStrategyCards(equityData, signals) {
           <span class="font-semibold text-sm">${meta.name}</span>
         </div>
         <p class="text-xs" style="color:#8892b0">${meta.desc}</p>
-        <div style="margin-top:12px">
-          <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px"><span style="color:#8892b0">Value</span><span>${fmtMoney(latest?.total_value)}</span></div>
-          <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px"><span style="color:#8892b0">Return</span><span style="color:${returnPct >= 0 ? '#4ecdc4' : '#ffa502'}">${fmtPct(returnPct)}</span></div>
+        <div style="margin-top:12px;display:grid;gap:6px">
+          <div style="display:flex;justify-content:space-between;font-size:13px"><span style="color:#8892b0">Total Value</span><span>${fmtMoney(row.total_value)}</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:13px"><span style="color:#8892b0">Stock/ETF Value</span><span>${fmtMoney(row.positions_value)}</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:13px"><span style="color:#8892b0">Cash</span><span>${fmtMoney(row.cash)}</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:13px"><span style="color:#8892b0">Return</span><span style="color:${returnColor}">${fmtPct(row.return_pct)}</span></div>
           <div style="display:flex;justify-content:space-between;font-size:13px"><span style="color:#8892b0">Signals</span><span>${count}</span></div>
         </div>
       </div>`;
   }).join('');
-  container.innerHTML = cards;
 }
 
 function renderSignals(signals) {
@@ -121,27 +139,34 @@ function renderSignals(signals) {
     const meta = STRATEGY_META[s.source] || { name: s.source, color: '#888' };
     const badgeClass = s.action === 'buy' ? 'badge-buy' : s.action === 'sell' ? 'badge-sell' : 'badge-hold';
     return `
-      <div class="signal-row" style="display:flex;align-items:center;justify-content:space-between;padding:8px;border-bottom:1px solid #233">
-        <div style="display:flex;align-items:center;gap:12px">
+      <div class="signal-row" style="display:flex;align-items:center;justify-content:space-between;padding:8px;border-bottom:1px solid #233;gap:12px">
+        <div style="display:flex;align-items:center;gap:12px;min-width:0;flex-wrap:wrap">
           <span style="color:#8892b0;font-size:12px;width:80px">${s.date}</span>
           <span style="color:${meta.color};font-size:12px;font-weight:500">${meta.name}</span>
           <span class="badge ${badgeClass}">${s.action.toUpperCase()}</span>
           <span style="font-weight:500">${s.ticker}</span>
         </div>
-        <div style="display:flex;gap:16px;color:#8892b0;font-size:12px">
+        <div style="display:flex;gap:16px;color:#8892b0;font-size:12px;white-space:nowrap">
           <span>${fmtMoney(s.price)}</span>
-          <span>${s.shares?.toFixed(2) || '—'} sh</span>
+          <span>${s.shares?.toFixed(2) || '-' } sh</span>
         </div>
       </div>`;
   }).join('');
 }
 
-// Run after DOM is ready
 document.addEventListener('DOMContentLoaded', async function() {
   console.log('App starting...');
   const data = await loadData();
-  renderEquityChart(data.equity);
+  renderEquityChart(data.equity, currentRange);
   renderStrategyCards(data.equity, data.signals);
   renderSignals(data.signals);
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentRange = btn.dataset.range;
+      renderEquityChart(data.equity, currentRange);
+    });
+  });
   console.log('App done');
 });
