@@ -8,12 +8,15 @@ const STRATEGY_META = {
   spy:              { name: 'S&P 500',           color: '#fbbf24', desc: 'Buy-and-hold benchmark' },
 };
 
+// Use relative base path for GitHub Pages compatibility
+const BASE = './';
+
 async function loadData() {
   const [strategies, signals, equity, holdings] = await Promise.all([
-    fetch('data/strategies.json').then(r => r.json()).catch(() => []),
-    fetch('data/signals.json').then(r => r.json()).catch(() => []),
-    fetch('data/equity_curve.json').then(r => r.json()).catch(() => []),
-    fetch('data/holdings.json').then(r => r.json()).catch(() => []),
+    fetch(BASE + 'data/strategies.json').then(r => r.json()).catch(() => []),
+    fetch(BASE + 'data/signals.json').then(r => r.json()).catch(() => []),
+    fetch(BASE + 'data/equity_curve.json').then(r => r.json()).catch(() => []),
+    fetch(BASE + 'data/holdings.json').then(r => r.json()).catch(() => []),
   ]);
   return { strategies, signals, equity, holdings };
 }
@@ -30,7 +33,7 @@ function fmtPct(v) {
 
 function renderEquityChart(equityData) {
   const ctx = document.getElementById('equityChart');
-  if (!ctx) return;
+  if (!ctx || !equityData.length) return;
   const bySource = {};
   equityData.forEach(d => { if (!bySource[d.source]) bySource[d.source] = []; bySource[d.source].push(d); });
   const allDates = [...new Set(equityData.map(d => d.date))].sort();
@@ -56,8 +59,8 @@ function renderEquityChart(equityData) {
           callbacks: { label: (ctx) => `${ctx.dataset.label}: ${fmtMoney(ctx.parsed.y)}` } },
       },
       scales: {
-        x: { grid: { color: 'rgba(35,51,51,0.5)' }, ticks: { color: '#8892b0', font: { size: 11 } } },
-        y: { grid: { color: 'rgba(35,51,51,0.5)' }, ticks: { color: '#8892b0', font: { size: 11 }, callback: (v) => '$' + (v/1000).toFixed(1) + 'k' } },
+        x: { grid: { color: 'rgba(35,51,51,0.5)' }, ticks: { color: '#a0aec0', font: { size: 11 } } },
+        y: { grid: { color: 'rgba(35,51,51,0.5)' }, ticks: { color: '#a0aec0', font: { size: 11 }, callback: (v) => '$' + (v/1000).toFixed(1) + 'k' } },
       },
     },
   });
@@ -82,11 +85,11 @@ function renderStrategyCards(equityData, signals) {
           <span class="w-3 h-3 rounded-full" style="background:${meta.color}"></span>
           <span class="font-semibold text-sm">${meta.name}</span>
         </div>
-        <p class="text-xs text-[var(--muted)] mb-4">${meta.desc}</p>
+        <p class="text-xs text-[#8892b0] mb-4">${meta.desc}</p>
         <div class="space-y-2">
-          <div class="flex justify-between text-sm"><span class="text-[var(--muted)]">Value</span><span class="font-medium">${fmtMoney(latest?.total_value)}</span></div>
-          <div class="flex justify-between text-sm"><span class="text-[var(--muted)]">Return</span><span class="font-medium" style="color:${returnPct >= 0 ? 'var(--profit)' : 'var(--loss)'}">${fmtPct(returnPct)}</span></div>
-          <div class="flex justify-between text-sm"><span class="text-[var(--muted)]">Signals</span><span class="font-medium">${count}</span></div>
+          <div class="flex justify-between text-sm"><span class="text-[#8892b0]">Value</span><span class="font-medium">${fmtMoney(latest?.total_value)}</span></div>
+          <div class="flex justify-between text-sm"><span class="text-[#8892b0]">Return</span><span class="font-medium" style="color:${returnPct >= 0 ? '#4ecdc4' : '#ffa502'}">${fmtPct(returnPct)}</span></div>
+          <div class="flex justify-between text-sm"><span class="text-[#8892b0]">Signals</span><span class="font-medium">${count}</span></div>
         </div>
       </div>`;
   }).join('');
@@ -103,12 +106,12 @@ function renderSignals(signals) {
     return `
       <div class="signal-row flex items-center justify-between py-2 px-2">
         <div class="flex items-center gap-3">
-          <span class="text-xs text-[var(--muted)] w-20">${s.date}</span>
+          <span class="text-xs text-[#8892b0] w-20">${s.date}</span>
           <span class="text-xs font-medium" style="color:${meta.color}">${meta.name}</span>
           <span class="badge ${badgeClass}">${s.action.toUpperCase()}</span>
           <span class="text-sm font-medium">${s.ticker}</span>
         </div>
-        <div class="flex items-center gap-4 text-xs text-[var(--muted)]">
+        <div class="flex items-center gap-4 text-xs text-[#8892b0]">
           <span>${fmtMoney(s.price)}</span>
           <span>${s.shares?.toFixed(2) || '—'} sh</span>
         </div>
