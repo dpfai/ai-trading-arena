@@ -1,5 +1,5 @@
 // AI Trading Arena - Main JS
-const ASSET_VERSION = '20260628-2';
+const ASSET_VERSION = '20260628-3';
 const withVersion = (path) => `${path}?v=${ASSET_VERSION}`;
 const STRATEGY_META = {
   ai_analyst:       { name: 'AI Analyst',       color: '#ff6b6b', desc: 'LLM-based market analysis & trading' },
@@ -51,7 +51,7 @@ function renderEquityChart(equityData) {
     rows.forEach(r => { dateMap[r.date] = r.total_value; });
     return {
       label: meta.name, 
-      data: allDates.map(d => dateMap[d] || null),
+      data: allDates.map(d => dateMap[d] ?? null),
       borderColor: meta.color, 
       backgroundColor: meta.color + '20',
       borderWidth: 2, pointRadius: 3, pointHoverRadius: 6, tension: 0.3, spanGaps: true,
