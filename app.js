@@ -1,4 +1,6 @@
 // AI Trading Arena - Main JS
+const ASSET_VERSION = '20260628-2';
+const withVersion = (path) => `${path}?v=${ASSET_VERSION}`;
 const STRATEGY_META = {
   ai_analyst:       { name: 'AI Analyst',       color: '#ff6b6b', desc: 'LLM-based market analysis & trading' },
   quant_learning:   { name: 'Quant AI',          color: '#4ecdc4', desc: 'ML multi-signal voting system' },
@@ -10,10 +12,10 @@ const STRATEGY_META = {
 
 async function loadData() {
   const results = await Promise.allSettled([
-    fetch('data/strategies.json').then(r => r.json()),
-    fetch('data/signals.json').then(r => r.json()),
-    fetch('data/equity_curve.json').then(r => r.json()),
-    fetch('data/holdings.json').then(r => r.json()),
+    fetch(withVersion('data/strategies.json')).then(r => r.json()),
+    fetch(withVersion('data/signals.json')).then(r => r.json()),
+    fetch(withVersion('data/equity_curve.json')).then(r => r.json()),
+    fetch(withVersion('data/holdings.json')).then(r => r.json()),
   ]);
   const [strategies, signals, equity, holdings] = results.map(r => {
     if (r.status === 'fulfilled') return r.value;
