@@ -1,5 +1,5 @@
 // AI Trading Arena - Trading Page JS
-const ASSET_VERSION = '20260628-4';
+const ASSET_VERSION = '20260628-6';
 const withVersion = (path) => `${path}?v=${ASSET_VERSION}`;
 const RANGE_DAYS = { all: null, '7': 7, '30': 30, '90': 90, '180': 180, '365': 365 };
 const STRATEGY_META = {

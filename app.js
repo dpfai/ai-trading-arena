@@ -1,5 +1,5 @@
 // AI Trading Arena - Main JS
-const ASSET_VERSION = '20260628-5';
+const ASSET_VERSION = '20260628-6';
 const withVersion = (path) => `${path}?v=${ASSET_VERSION}`;
 const STRATEGY_META = {
   ai_analyst:       { name: 'AI Analyst',       color: '#ff6b6b', desc: 'LLM-based market analysis & trading' },
