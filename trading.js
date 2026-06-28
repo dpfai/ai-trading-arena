@@ -8,14 +8,18 @@ const STRATEGY_META = {
   spy:              { name: 'S&P 500',           color: '#fbbf24' },
 };
 
-const BASE = './';
-
 async function loadData() {
-  const [signals, equity, holdings] = await Promise.all([
-    fetch(BASE + 'data/signals.json').then(r => r.json()).catch(() => []),
-    fetch(BASE + 'data/equity_curve.json').then(r => r.json()).catch(() => []),
-    fetch(BASE + 'data/holdings.json').then(r => r.json()).catch(() => []),
+  const results = await Promise.allSettled([
+    fetch('data/signals.json').then(r => r.json()),
+    fetch('data/equity_curve.json').then(r => r.json()),
+    fetch('data/holdings.json').then(r => r.json()),
   ]);
+  const [signals, equity, holdings] = results.map(r => {
+    if (r.status === 'fulfilled') return r.value;
+    console.error('Fetch error:', r.reason);
+    return [];
+  });
+  console.log('Loaded:', { signals: signals.length, equity: equity.length, holdings: holdings.length });
   return { signals, equity, holdings };
 }
 
@@ -34,7 +38,7 @@ let currentRange = 'all';
 
 function renderEquityChart(equityData, range) {
   const ctx = document.getElementById('equityChart');
-  if (!ctx || !equityData.length) return;
+  if (!ctx || !equityData.length || typeof Chart === 'undefined') return;
   
   let filtered = equityData;
   if (range !== 'all') {
@@ -54,7 +58,7 @@ function renderEquityChart(equityData, range) {
     return {
       label: meta.name, data: allDates.map(d => dateMap[d] || null),
       borderColor: meta.color, backgroundColor: meta.color + '20',
-      borderWidth: 2, pointRadius: 2, pointHoverRadius: 5, tension: 0.3, spanGaps: true,
+      borderWidth: 2, pointRadius: 3, pointHoverRadius: 6, tension: 0.3, spanGaps: true,
     };
   });
   
@@ -66,7 +70,7 @@ function renderEquityChart(equityData, range) {
       responsive: true, maintainAspectRatio: false,
       interaction: { mode: 'index', intersect: false },
       plugins: {
-        legend: { display: false },
+        legend: { display: true, position: 'top', labels: { color: '#a0aec0', font: { size: 11 } } },
         tooltip: { backgroundColor: '#16213e', borderColor: '#233', borderWidth: 1,
           callbacks: { label: (c) => `${c.dataset.label}: ${fmtMoney(c.parsed.y)}` } },
       },
@@ -81,6 +85,7 @@ function renderEquityChart(equityData, range) {
 function renderHoldings(holdings) {
   const tbody = document.getElementById('holdingsBody');
   if (!tbody) return;
+  if (!holdings.length) { tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;color:#8892b0">No holdings data.</td></tr>'; return; }
   const sorted = [...holdings].sort((a, b) => b.date.localeCompare(a.date) || a.source.localeCompare(b.source));
   tbody.innerHTML = sorted.map(h => {
     const meta = STRATEGY_META[h.source] || { name: h.source, color: '#888' };
@@ -101,6 +106,7 @@ function renderHoldings(holdings) {
 function renderSignals(signals) {
   const tbody = document.getElementById('signalsBody');
   if (!tbody) return;
+  if (!signals.length) { tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;color:#8892b0">No signals yet.</td></tr>'; return; }
   const sorted = [...signals].sort((a, b) => b.date.localeCompare(a.date));
   tbody.innerHTML = sorted.map(s => {
     const meta = STRATEGY_META[s.source] || { name: s.source, color: '#888' };
@@ -113,23 +119,25 @@ function renderSignals(signals) {
       <td>${fmtMoney(s.price)}</td>
       <td>${s.shares?.toFixed(4) || '—'}</td>
       <td>${fmtMoney(s.amount)}</td>
-      <td class="text-xs text-[#8892b0]">${(s.reason || '').substring(0, 60)}</td>
+      <td style="font-size:11px;color:#8892b0;max-width:200px;overflow:hidden;text-overflow:ellipsis">${(s.reason || '').substring(0, 80)}</td>
     </tr>`;
   }).join('');
 }
 
-document.querySelectorAll('.filter-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    currentRange = btn.dataset.range;
-    loadData().then(data => renderEquityChart(data.equity, currentRange));
-  });
-});
-
-(async function() {
+document.addEventListener('DOMContentLoaded', async function() {
+  console.log('Trading page starting...');
   const data = await loadData();
   renderEquityChart(data.equity, currentRange);
   renderHoldings(data.holdings);
   renderSignals(data.signals);
-})();
+  
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentRange = btn.dataset.range;
+      renderEquityChart(data.equity, currentRange);
+    });
+  });
+  console.log('Trading page done');
+});

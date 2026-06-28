@@ -8,16 +8,19 @@ const STRATEGY_META = {
   spy:              { name: 'S&P 500',           color: '#fbbf24', desc: 'Buy-and-hold benchmark' },
 };
 
-// Use relative base path for GitHub Pages compatibility
-const BASE = './';
-
 async function loadData() {
-  const [strategies, signals, equity, holdings] = await Promise.all([
-    fetch(BASE + 'data/strategies.json').then(r => r.json()).catch(() => []),
-    fetch(BASE + 'data/signals.json').then(r => r.json()).catch(() => []),
-    fetch(BASE + 'data/equity_curve.json').then(r => r.json()).catch(() => []),
-    fetch(BASE + 'data/holdings.json').then(r => r.json()).catch(() => []),
+  const results = await Promise.allSettled([
+    fetch('data/strategies.json').then(r => r.json()),
+    fetch('data/signals.json').then(r => r.json()),
+    fetch('data/equity_curve.json').then(r => r.json()),
+    fetch('data/holdings.json').then(r => r.json()),
   ]);
+  const [strategies, signals, equity, holdings] = results.map(r => {
+    if (r.status === 'fulfilled') return r.value;
+    console.error('Fetch error:', r.reason);
+    return [];
+  });
+  console.log('Loaded:', { strategies: strategies.length, signals: signals.length, equity: equity.length, holdings: holdings.length });
   return { strategies, signals, equity, holdings };
 }
 
@@ -33,7 +36,10 @@ function fmtPct(v) {
 
 function renderEquityChart(equityData) {
   const ctx = document.getElementById('equityChart');
-  if (!ctx || !equityData.length) return;
+  if (!ctx) { console.error('equityChart canvas not found'); return; }
+  if (!equityData.length) { console.error('No equity data'); return; }
+  if (typeof Chart === 'undefined') { console.error('Chart.js not loaded'); return; }
+  
   const bySource = {};
   equityData.forEach(d => { if (!bySource[d.source]) bySource[d.source] = []; bySource[d.source].push(d); });
   const allDates = [...new Set(equityData.map(d => d.date))].sort();
@@ -42,11 +48,16 @@ function renderEquityChart(equityData) {
     const dateMap = {};
     rows.forEach(r => { dateMap[r.date] = r.total_value; });
     return {
-      label: meta.name, data: allDates.map(d => dateMap[d] || null),
-      borderColor: meta.color, backgroundColor: meta.color + '20',
-      borderWidth: 2, pointRadius: 2, pointHoverRadius: 5, tension: 0.3, spanGaps: true,
+      label: meta.name, 
+      data: allDates.map(d => dateMap[d] || null),
+      borderColor: meta.color, 
+      backgroundColor: meta.color + '20',
+      borderWidth: 2, pointRadius: 3, pointHoverRadius: 6, tension: 0.3, spanGaps: true,
     };
   });
+  
+  console.log('Rendering chart with', datasets.length, 'datasets and', allDates.length, 'dates');
+  
   new Chart(ctx, {
     type: 'line',
     data: { labels: allDates, datasets },
@@ -54,9 +65,12 @@ function renderEquityChart(equityData) {
       responsive: true, maintainAspectRatio: false,
       interaction: { mode: 'index', intersect: false },
       plugins: {
-        legend: { display: false },
+        legend: { 
+          display: true, position: 'top',
+          labels: { color: '#a0aec0', font: { size: 11 } } 
+        },
         tooltip: { backgroundColor: '#16213e', borderColor: '#233', borderWidth: 1,
-          callbacks: { label: (ctx) => `${ctx.dataset.label}: ${fmtMoney(ctx.parsed.y)}` } },
+          callbacks: { label: (c) => `${c.dataset.label}: ${fmtMoney(c.parsed.y)}` } },
       },
       scales: {
         x: { grid: { color: 'rgba(35,51,51,0.5)' }, ticks: { color: '#a0aec0', font: { size: 11 } } },
@@ -82,14 +96,14 @@ function renderStrategyCards(equityData, signals) {
     return `
       <div class="strategy-card card p-5">
         <div class="flex items-center gap-2 mb-3">
-          <span class="w-3 h-3 rounded-full" style="background:${meta.color}"></span>
+          <span class="w-3 h-3 rounded-full inline-block" style="background:${meta.color}"></span>
           <span class="font-semibold text-sm">${meta.name}</span>
         </div>
-        <p class="text-xs text-[#8892b0] mb-4">${meta.desc}</p>
-        <div class="space-y-2">
-          <div class="flex justify-between text-sm"><span class="text-[#8892b0]">Value</span><span class="font-medium">${fmtMoney(latest?.total_value)}</span></div>
-          <div class="flex justify-between text-sm"><span class="text-[#8892b0]">Return</span><span class="font-medium" style="color:${returnPct >= 0 ? '#4ecdc4' : '#ffa502'}">${fmtPct(returnPct)}</span></div>
-          <div class="flex justify-between text-sm"><span class="text-[#8892b0]">Signals</span><span class="font-medium">${count}</span></div>
+        <p class="text-xs" style="color:#8892b0">${meta.desc}</p>
+        <div style="margin-top:12px">
+          <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px"><span style="color:#8892b0">Value</span><span>${fmtMoney(latest?.total_value)}</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px"><span style="color:#8892b0">Return</span><span style="color:${returnPct >= 0 ? '#4ecdc4' : '#ffa502'}">${fmtPct(returnPct)}</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:13px"><span style="color:#8892b0">Signals</span><span>${count}</span></div>
         </div>
       </div>`;
   }).join('');
@@ -99,19 +113,20 @@ function renderStrategyCards(equityData, signals) {
 function renderSignals(signals) {
   const container = document.getElementById('signalsList');
   if (!container) return;
+  if (!signals.length) { container.innerHTML = '<p style="color:#8892b0;text-align:center;padding:20px">No signals yet.</p>'; return; }
   const sorted = [...signals].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 20);
   container.innerHTML = sorted.map(s => {
     const meta = STRATEGY_META[s.source] || { name: s.source, color: '#888' };
     const badgeClass = s.action === 'buy' ? 'badge-buy' : s.action === 'sell' ? 'badge-sell' : 'badge-hold';
     return `
-      <div class="signal-row flex items-center justify-between py-2 px-2">
-        <div class="flex items-center gap-3">
-          <span class="text-xs text-[#8892b0] w-20">${s.date}</span>
-          <span class="text-xs font-medium" style="color:${meta.color}">${meta.name}</span>
+      <div class="signal-row" style="display:flex;align-items:center;justify-content:space-between;padding:8px;border-bottom:1px solid #233">
+        <div style="display:flex;align-items:center;gap:12px">
+          <span style="color:#8892b0;font-size:12px;width:80px">${s.date}</span>
+          <span style="color:${meta.color};font-size:12px;font-weight:500">${meta.name}</span>
           <span class="badge ${badgeClass}">${s.action.toUpperCase()}</span>
-          <span class="text-sm font-medium">${s.ticker}</span>
+          <span style="font-weight:500">${s.ticker}</span>
         </div>
-        <div class="flex items-center gap-4 text-xs text-[#8892b0]">
+        <div style="display:flex;gap:16px;color:#8892b0;font-size:12px">
           <span>${fmtMoney(s.price)}</span>
           <span>${s.shares?.toFixed(2) || '—'} sh</span>
         </div>
@@ -119,9 +134,12 @@ function renderSignals(signals) {
   }).join('');
 }
 
-(async function() {
+// Run after DOM is ready
+document.addEventListener('DOMContentLoaded', async function() {
+  console.log('App starting...');
   const data = await loadData();
   renderEquityChart(data.equity);
   renderStrategyCards(data.equity, data.signals);
   renderSignals(data.signals);
-})();
+  console.log('App done');
+});
