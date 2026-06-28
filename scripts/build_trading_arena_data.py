@@ -393,16 +393,30 @@ def stock_price_hint(stock: dict[str, Any]) -> float | None:
     return None
 
 
+def next_trading_day_after(days: list[pd.Timestamp], decision_day: str) -> str | None:
+    decision = parse_day(decision_day)
+    for day in days:
+        if day.date() > decision:
+            return iso_day(day)
+    return None
+
+
 def build_ai_analyst(prices: pd.DataFrame, items: list[dict[str, Any]]) -> tuple[list[dict[str, Any]], list[dict[str, Any]], list[dict[str, Any]]]:
     signals: list[dict[str, Any]] = []
     equity: list[dict[str, Any]] = []
     holdings_rows: list[dict[str, Any]] = []
     days = trading_days(prices, START_DATE)
-    by_day: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    by_execution_day: dict[str, list[dict[str, Any]]] = defaultdict(list)
     for item in items:
-        item_date = item.get("date")
-        if item_date and item_date >= START_DATE.isoformat():
-            by_day[item_date].append(item)
+        decision_date = item.get("date")
+        if not decision_date or decision_date < START_DATE.isoformat():
+            continue
+        execution_date = next_trading_day_after(days, decision_date)
+        if not execution_date:
+            continue
+        executable = dict(item)
+        executable["decision_date"] = decision_date
+        by_execution_day[execution_date].append(executable)
 
     cash = INITIAL_CASH
     total_contributed = INITIAL_CASH
@@ -414,7 +428,7 @@ def build_ai_analyst(prices: pd.DataFrame, items: list[dict[str, Any]]) -> tuple
             cash += WEEKLY_CONTRIBUTION
             total_contributed += WEEKLY_CONTRIBUTION
 
-        for stock in by_day.get(day_str, []):
+        for stock in by_execution_day.get(day_str, []):
             ticker = stock.get("code")
             if not ticker:
                 continue
@@ -440,7 +454,6 @@ def build_ai_analyst(prices: pd.DataFrame, items: list[dict[str, Any]]) -> tuple
                 positions[ticker] = {"shares": 0.0, "cost": 0.0}
 
         positions_value = 0.0
-        active_cost = 0.0
         for ticker, pos in sorted(positions.items()):
             if pos["shares"] <= 0:
                 continue
@@ -448,7 +461,6 @@ def build_ai_analyst(prices: pd.DataFrame, items: list[dict[str, Any]]) -> tuple
             if not px:
                 continue
             positions_value += pos["shares"] * px
-            active_cost += pos["cost"]
             holdings_rows.append(holding_row(day_str, "ai_analyst", ticker, pos["shares"], pos["cost"], px))
         equity.append(equity_row(day_str, "ai_analyst", cash + positions_value, cash, positions_value, total_contributed))
 

@@ -14,8 +14,6 @@ ROOT = Path(__file__).resolve().parents[1]
 QUANT_DIR = Path("~/AI-workplace/quant-learning").expanduser()
 QUANT_PYTHON = QUANT_DIR / "venv" / "bin" / "python"
 QUANT_DB = QUANT_DIR / "data" / "trading_arena.db"
-OPENCLAW_EXPLORER = Path("~/.openclaw/workspace-explorer").expanduser()
-STOCK_ANALYSIS_SCRIPT = OPENCLAW_EXPLORER / "weekly_stock_analysis.py"
 EXPECTED_SOURCES = {
     "quant_learning",
     "ai_analyst",
@@ -39,10 +37,6 @@ def refresh_quant_learning(end: str) -> None:
     )
 
 
-def run_stock_analysis() -> None:
-    run([sys.executable, str(STOCK_ANALYSIS_SCRIPT)], cwd=OPENCLAW_EXPLORER)
-
-
 def build_data(end: str) -> None:
     run([sys.executable, "scripts/build_trading_arena_data.py", "--end", end], cwd=ROOT)
 
@@ -62,11 +56,6 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Refresh Trading Arena upstream data and JSON outputs.")
     parser.add_argument("--end", default=date.today().isoformat())
     parser.add_argument("--skip-quant", action="store_true")
-    parser.add_argument(
-        "--run-stock-analysis",
-        action="store_true",
-        help="Generate a fresh OpenClaw stock_analysis file before building. Daily refresh leaves this off.",
-    )
     return parser.parse_args()
 
 
@@ -75,8 +64,6 @@ def main() -> None:
     datetime.strptime(args.end, "%Y-%m-%d")
     if not args.skip_quant:
         refresh_quant_learning(args.end)
-    if args.run_stock_analysis:
-        run_stock_analysis()
     build_data(args.end)
     validate_outputs()
 

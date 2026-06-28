@@ -1,4 +1,4 @@
-const ASSET_VERSION = '20260628-9';
+const ASSET_VERSION = '20260628-10';
 const withVersion = (path) => `${path}?v=${ASSET_VERSION}`;
 const STRATEGY_META = {
   ai_analyst: { name: 'AI Analyst', color: '#ff6b6b' },

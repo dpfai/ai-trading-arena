@@ -1,8 +1,8 @@
 [
   {
-    "cash": 3430.0,
+    "cash": 10000.0,
     "date": "2026-06-15",
-    "positions_value": 6570.0,
+    "positions_value": 0.0,
     "return_pct": 0.0,
     "source": "ai_analyst",
     "total_cost": 10000.0,
@@ -54,13 +54,13 @@
     "total_value": 10000.0
   },
   {
-    "cash": 3930.0,
+    "cash": 3601.5,
     "date": "2026-06-16",
-    "positions_value": 6575.743885029859,
-    "return_pct": 0.0005470366695103405,
+    "positions_value": 6898.5,
+    "return_pct": 0.0,
     "source": "ai_analyst",
     "total_cost": 10500.0,
-    "total_value": 10505.743885029859
+    "total_value": 10500.0
   },
   {
     "cash": 0.0,
@@ -108,13 +108,13 @@
     "total_value": 10440.383928856603
   },
   {
-    "cash": 3930.0,
+    "cash": 3601.5,
     "date": "2026-06-17",
-    "positions_value": 6473.374138777446,
-    "return_pct": -0.009202462973576553,
+    "positions_value": 6791.236494070422,
+    "return_pct": -0.010215571993293236,
     "source": "ai_analyst",
     "total_cost": 10500.0,
-    "total_value": 10403.374138777446
+    "total_value": 10392.736494070421
   },
   {
     "cash": 0.0,
@@ -162,13 +162,13 @@
     "total_value": 10310.006169461652
   },
   {
-    "cash": 3930.0,
+    "cash": 3601.5,
     "date": "2026-06-18",
-    "positions_value": 6383.404428766161,
-    "return_pct": -0.01777100678417524,
+    "positions_value": 6697.035223982532,
+    "return_pct": -0.019187121525473014,
     "source": "ai_analyst",
     "total_cost": 10500.0,
-    "total_value": 10313.40442876616
+    "total_value": 10298.535223982533
   },
   {
     "cash": 0.0,
@@ -216,13 +216,13 @@
     "total_value": 10390.430897747212
   },
   {
-    "cash": 3930.0,
+    "cash": 3601.5,
     "date": "2026-06-22",
-    "positions_value": 6429.396689871838,
-    "return_pct": -0.013390791440777233,
+    "positions_value": 6745.5634589889505,
+    "return_pct": -0.01456538485819519,
     "source": "ai_analyst",
     "total_cost": 10500.0,
-    "total_value": 10359.396689871839
+    "total_value": 10347.06345898895
   },
   {
     "cash": 0.0,
@@ -270,13 +270,13 @@
     "total_value": 10357.73242270048
   },
   {
-    "cash": 178.76647901,
+    "cash": 4101.5,
     "date": "2026-06-23",
-    "positions_value": 10778.627677924635,
-    "return_pct": -0.003873258460487705,
+    "positions_value": 6848.540648584338,
+    "return_pct": -0.0045417592196056586,
     "source": "ai_analyst",
     "total_cost": 11000.0,
-    "total_value": 10957.394156934635
+    "total_value": 10950.040648584338
   },
   {
     "cash": 0.0,
@@ -324,13 +324,13 @@
     "total_value": 10707.317908805046
   },
   {
-    "cash": 178.76647901,
+    "cash": 165.5103191105,
     "date": "2026-06-24",
-    "positions_value": 10808.386130053072,
-    "return_pct": -0.0011679446306297905,
+    "positions_value": 10800.355554387668,
+    "return_pct": -0.003103102409257355,
     "source": "ai_analyst",
     "total_cost": 11000.0,
-    "total_value": 10987.152609063072
+    "total_value": 10965.86587349817
   },
   {
     "cash": 0.0,
@@ -378,13 +378,13 @@
     "total_value": 10702.354884248462
   },
   {
-    "cash": 178.76647901,
+    "cash": 165.5103191105,
     "date": "2026-06-25",
-    "positions_value": 10855.911407878099,
-    "return_pct": 0.003152535171645385,
+    "positions_value": 10846.490049614733,
+    "return_pct": 0.0010909426113848895,
     "source": "ai_analyst",
     "total_cost": 11000.0,
-    "total_value": 11034.6778868881
+    "total_value": 11012.000368725234
   },
   {
     "cash": 0.0,
@@ -432,13 +432,13 @@
     "total_value": 10717.826585464432
   },
   {
-    "cash": 178.76647901,
+    "cash": 165.5103191105,
     "date": "2026-06-26",
-    "positions_value": 10951.550860471627,
-    "return_pct": 0.01184703086196615,
+    "positions_value": 10954.986682511673,
+    "return_pct": 0.010954272874743104,
     "source": "ai_analyst",
     "total_cost": 11000.0,
-    "total_value": 11130.317339481628
+    "total_value": 11120.497001622174
   },
   {
     "cash": 0.0,

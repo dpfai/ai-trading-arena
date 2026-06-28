@@ -10,7 +10,9 @@ Website data lives in `data/*.json`. The full refresh entrypoint is:
 python3 scripts/refresh_trading_arena.py --end YYYY-MM-DD
 ```
 
-That wrapper updates QuantAI first, then calls `scripts/build_trading_arena_data.py`. It runs `quant-learning/daily_runner.py` so QuantAI does not stall, then rebuilds daily values for all strategies. AI Analyst uses existing OpenClaw `stock_analysis_*.json` files as weekly decision points; daily refresh only marks current holdings to market unless `--run-stock-analysis` is explicitly passed.
+That wrapper updates QuantAI first, then calls `scripts/build_trading_arena_data.py`. It runs `quant-learning/daily_runner.py` so QuantAI does not stall, then rebuilds daily values for all strategies. AI Analyst uses existing OpenClaw `stock_analysis_*.json` files as weekly decision points; daily refresh only marks current holdings to market. Trading Arena never generates stock analysis files.
+
+AI Analyst execution rule: a `stock_analysis_YYYY-MM-DD.json` file is a decision made on `YYYY-MM-DD`; any buy/sell signal is executed on the next trading day, using that next trading day's price. The decision day itself only marks existing holdings to market.
 
 The generator is intentionally kept in this repository. OpenClaw produces upstream research and portfolio files, while this repo owns the final Trading Arena JSON contract.
 

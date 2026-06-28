@@ -1,38 +1,5 @@
 [
   {
-    "cost_price": 979.4500122070312,
-    "current_price": 979.4500122070312,
-    "date": "2026-06-15",
-    "profit_loss": 0.0,
-    "return_pct": 0.0,
-    "shares": 3.062943450518713,
-    "source": "ai_analyst",
-    "ticker": "COST",
-    "value": 3000.0
-  },
-  {
-    "cost_price": 235.66000366210935,
-    "current_price": 235.66000366210938,
-    "date": "2026-06-15",
-    "profit_loss": 0.0,
-    "return_pct": 0.0,
-    "shares": 8.911143033889585,
-    "source": "ai_analyst",
-    "ticker": "JNJ",
-    "value": 2100.0
-  },
-  {
-    "cost_price": 411.0400085449219,
-    "current_price": 411.0400085449219,
-    "date": "2026-06-15",
-    "profit_loss": 0.0,
-    "return_pct": 0.0,
-    "shares": 3.576294203583217,
-    "source": "ai_analyst",
-    "ticker": "UNH",
-    "value": 1470.0
-  },
-  {
     "cost_price": 647.0999616054022,
     "current_price": 647.0999755859375,
     "date": "2026-06-15",
@@ -187,37 +154,37 @@
     "value": 10000.0
   },
   {
-    "cost_price": 979.4500122070312,
+    "cost_price": 986.6799926757812,
     "current_price": 986.6799926757812,
     "date": "2026-06-16",
-    "profit_loss": 22.145021324135996,
-    "return_pct": 0.007381673774711999,
-    "shares": 3.062943450518713,
+    "profit_loss": 0.0,
+    "return_pct": 0.0,
+    "shares": 3.1925244490440137,
     "source": "ai_analyst",
     "ticker": "COST",
-    "value": 3022.145021324136
+    "value": 3150.0
   },
   {
-    "cost_price": 235.66000366210935,
+    "cost_price": 235.17999267578125,
     "current_price": 235.17999267578125,
     "date": "2026-06-16",
-    "profit_loss": -4.277446557008261,
-    "return_pct": -0.0020368793128610766,
-    "shares": 8.911143033889585,
+    "profit_loss": 0.0,
+    "return_pct": 0.0,
+    "shares": 9.375797553662693,
     "source": "ai_analyst",
     "ticker": "JNJ",
-    "value": 2095.7225534429917
+    "value": 2205.0
   },
   {
-    "cost_price": 411.0400085449219,
+    "cost_price": 407.6499938964844,
     "current_price": 407.6499938964844,
     "date": "2026-06-16",
-    "profit_loss": -12.12368973726916,
-    "return_pct": -0.008247407984536844,
-    "shares": 3.576294203583217,
+    "profit_loss": 0.0,
+    "return_pct": 0.0,
+    "shares": 3.7863363746104826,
     "source": "ai_analyst",
     "ticker": "UNH",
-    "value": 1457.8763102627308
+    "value": 1543.5
   },
   {
     "cost_price": 645.5480388614909,
@@ -374,37 +341,37 @@
     "value": 10440.383928856603
   },
   {
-    "cost_price": 979.4500122070312,
+    "cost_price": 986.6799926757812,
     "current_price": 965.5900268554688,
     "date": "2026-06-17",
-    "profit_loss": -42.4523513568538,
-    "return_pct": -0.014150783785617932,
-    "shares": 3.062943450518713,
+    "profit_loss": -67.33023151085035,
+    "return_pct": -0.021374676670111222,
+    "shares": 3.1925244490440137,
     "source": "ai_analyst",
     "ticker": "COST",
-    "value": 2957.547648643146
+    "value": 3082.6697684891496
   },
   {
-    "cost_price": 235.66000366210935,
+    "cost_price": 235.17999267578125,
     "current_price": 234.1999969482422,
     "date": "2026-06-17",
-    "profit_loss": -13.010328657709579,
-    "return_pct": -0.006195394598909323,
-    "shares": 8.911143033889585,
+    "profit_loss": -9.18824154486083,
+    "return_pct": -0.0041670029681908525,
+    "shares": 9.375797553662693,
     "source": "ai_analyst",
     "ticker": "JNJ",
-    "value": 2086.9896713422904
+    "value": 2195.811758455139
   },
   {
-    "cost_price": 411.0400085449219,
+    "cost_price": 407.6499938964844,
     "current_price": 399.5299987792969,
     "date": "2026-06-17",
-    "profit_loss": -41.163181207990874,
-    "return_pct": -0.028002164087068623,
-    "shares": 3.576294203583217,
+    "profit_loss": -30.74503287386665,
+    "return_pct": -0.01991903652339919,
+    "shares": 3.7863363746104826,
     "source": "ai_analyst",
     "ticker": "UNH",
-    "value": 1428.8368187920091
+    "value": 1512.7549671261334
   },
   {
     "cost_price": 645.5480388614909,
@@ -561,37 +528,37 @@
     "value": 10310.006169461652
   },
   {
-    "cost_price": 979.4500122070312,
+    "cost_price": 986.6799926757812,
     "current_price": 951.4500122070312,
     "date": "2026-06-18",
-    "profit_loss": -85.76241661452377,
-    "return_pct": -0.028587472204841258,
-    "shares": 3.062943450518713,
+    "profit_loss": -112.4725739858277,
+    "return_pct": -0.035705579043119905,
+    "shares": 3.1925244490440137,
     "source": "ai_analyst",
     "ticker": "COST",
-    "value": 2914.2375833854762
+    "value": 3037.5274260141723
   },
   {
-    "cost_price": 235.66000366210935,
+    "cost_price": 235.17999267578125,
     "current_price": 228.38999938964844,
     "date": "2026-06-18",
-    "profit_loss": -64.78404792888773,
-    "return_pct": -0.03084954663280368,
-    "shares": 8.911143033889585,
+    "profit_loss": -63.66160244151024,
+    "return_pct": -0.028871475030163376,
+    "shares": 9.375797553662693,
     "source": "ai_analyst",
     "ticker": "JNJ",
-    "value": 2035.2159520711123
+    "value": 2141.3383975584898
   },
   {
-    "cost_price": 411.0400085449219,
+    "cost_price": 407.6499938964844,
     "current_price": 400.9599914550781,
     "date": "2026-06-18",
-    "profit_loss": -36.04910669042806,
-    "return_pct": -0.02452320183022317,
-    "shares": 3.576294203583217,
+    "profit_loss": -25.330599590129395,
+    "return_pct": -0.01641114323947483,
+    "shares": 3.7863363746104826,
     "source": "ai_analyst",
     "ticker": "UNH",
-    "value": 1433.950893309572
+    "value": 1518.1694004098706
   },
   {
     "cost_price": 645.5480388614909,
@@ -748,37 +715,37 @@
     "value": 10390.430897747212
   },
   {
-    "cost_price": 979.4500122070312,
+    "cost_price": 986.6799926757812,
     "current_price": 951.3499755859375,
     "date": "2026-06-22",
-    "profit_loss": -86.06882312791504,
-    "return_pct": -0.028689607709305013,
-    "shares": 3.062943450518713,
+    "profit_loss": -112.79194334446902,
+    "return_pct": -0.03580696614110128,
+    "shares": 3.1925244490440137,
     "source": "ai_analyst",
     "ticker": "COST",
-    "value": 2913.931176872085
+    "value": 3037.208056655531
   },
   {
-    "cost_price": 235.66000366210935,
+    "cost_price": 235.17999267578125,
     "current_price": 231.2899932861328,
     "date": "2026-06-22",
-    "profit_loss": -38.94178751990876,
-    "return_pct": -0.018543708342813693,
-    "shares": 8.911143033889585,
+    "profit_loss": -36.47184676121515,
+    "return_pct": -0.016540520073113445,
+    "shares": 9.375797553662693,
     "source": "ai_analyst",
     "ticker": "JNJ",
-    "value": 2061.0582124800912
+    "value": 2168.528153238785
   },
   {
-    "cost_price": 411.0400085449219,
+    "cost_price": 407.6499938964844,
     "current_price": 406.67999267578125,
     "date": "2026-06-22",
-    "profit_loss": -15.592699480338524,
-    "return_pct": -0.010607278558053417,
-    "shares": 3.576294203583217,
+    "profit_loss": -3.6727509053648646,
+    "return_pct": -0.002379495241571017,
+    "shares": 3.7863363746104826,
     "source": "ai_analyst",
     "ticker": "UNH",
-    "value": 1454.4073005196615
+    "value": 1539.8272490946351
   },
   {
     "cost_price": 645.5480388614909,
@@ -935,136 +902,37 @@
     "value": 10357.73242270048
   },
   {
-    "cost_price": 519.8499755859375,
-    "current_price": 519.8499755859375,
-    "date": "2026-06-23",
-    "profit_loss": 0.0,
-    "return_pct": 0.0,
-    "shares": 2.556506804683499,
-    "source": "ai_analyst",
-    "ticker": "AMD",
-    "value": 1329.0
-  },
-  {
-    "cost_price": 337.7799987792969,
-    "current_price": 337.7799987792969,
-    "date": "2026-06-23",
-    "profit_loss": 0.0,
-    "return_pct": 0.0,
-    "shares": 2.75415952206173,
-    "source": "ai_analyst",
-    "ticker": "AXP",
-    "value": 930.3
-  },
-  {
-    "cost_price": 57.90999984741212,
-    "current_price": 57.90999984741211,
-    "date": "2026-06-23",
-    "profit_loss": 0.0,
-    "return_pct": 0.0,
-    "shares": 11.245208111135943,
-    "source": "ai_analyst",
-    "ticker": "BAC",
-    "value": 651.2099999999999
-  },
-  {
-    "cost_price": 979.4500122070312,
+    "cost_price": 986.6799926757812,
     "current_price": 957.6799926757812,
     "date": "2026-06-23",
-    "profit_loss": -66.68033874090679,
-    "return_pct": -0.022226779580302263,
-    "shares": 3.062943450518713,
+    "profit_loss": -92.5832090222766,
+    "return_pct": -0.02939149492770686,
+    "shares": 3.1925244490440137,
     "source": "ai_analyst",
     "ticker": "COST",
-    "value": 2933.319661259093
+    "value": 3057.4167909777234
   },
   {
-    "cost_price": 1094.43994140625,
-    "current_price": 1094.43994140625,
-    "date": "2026-06-23",
-    "profit_loss": 0.0,
-    "return_pct": 0.0,
-    "shares": 0.416511662955466,
-    "source": "ai_analyst",
-    "ticker": "GS",
-    "value": 455.8469999999999
-  },
-  {
-    "cost_price": 324.45001220703125,
-    "current_price": 324.45001220703125,
-    "date": "2026-06-23",
-    "profit_loss": 0.0,
-    "return_pct": 0.0,
-    "shares": 0.983488636136611,
-    "source": "ai_analyst",
-    "ticker": "HD",
-    "value": 319.09289999999993
-  },
-  {
-    "cost_price": 132.27999877929688,
-    "current_price": 132.27999877929688,
-    "date": "2026-06-23",
-    "profit_loss": 0.0,
-    "return_pct": 0.0,
-    "shares": 1.688577502730963,
-    "source": "ai_analyst",
-    "ticker": "INTC",
-    "value": 223.36502999999996
-  },
-  {
-    "cost_price": 235.66000366210935,
+    "cost_price": 235.17999267578125,
     "current_price": 239.0800018310547,
     "date": "2026-06-23",
-    "profit_loss": 30.476092859112214,
-    "return_pct": 0.014512425171005816,
-    "shares": 8.911143033889585,
+    "profit_loss": 36.565696297274826,
+    "return_pct": 0.016583082220986315,
+    "shares": 9.375797553662693,
     "source": "ai_analyst",
     "ticker": "JNJ",
-    "value": 2130.476092859112
+    "value": 2241.565696297275
   },
   {
-    "cost_price": 226.02999877929688,
-    "current_price": 226.02999877929688,
-    "date": "2026-06-23",
-    "profit_loss": 0.0,
-    "return_pct": 0.0,
-    "shares": 0.6917467674397975,
-    "source": "ai_analyst",
-    "ticker": "MS",
-    "value": 156.35552099999998
-  },
-  {
-    "cost_price": 200.0399932861328,
-    "current_price": 200.0399932861328,
-    "date": "2026-06-23",
-    "profit_loss": 0.0,
-    "return_pct": 0.0,
-    "shares": 0.547134914883979,
-    "source": "ai_analyst",
-    "ticker": "NVDA",
-    "value": 109.44886470000002
-  },
-  {
-    "cost_price": 381.6099853515625,
-    "current_price": 381.6099853515625,
-    "date": "2026-06-23",
-    "profit_loss": 0.0,
-    "return_pct": 0.0,
-    "shares": 0.20076572477373283,
-    "source": "ai_analyst",
-    "ticker": "TSLA",
-    "value": 76.61420529000002
-  },
-  {
-    "cost_price": 411.0400085449219,
+    "cost_price": 407.6499938964844,
     "current_price": 409.25,
     "date": "2026-06-23",
-    "profit_loss": -6.401597183568583,
-    "return_pct": -0.00435482801603305,
-    "shares": 3.576294203583217,
+    "profit_loss": 6.058161309339994,
+    "return_pct": 0.003924950637732422,
+    "shares": 3.7863363746104826,
     "source": "ai_analyst",
     "ticker": "UNH",
-    "value": 1463.5984028164314
+    "value": 1549.55816130934
   },
   {
     "cost_price": 644.5689058050006,
@@ -1221,136 +1089,136 @@
     "value": 10707.317908805046
   },
   {
-    "cost_price": 519.8499755859375,
+    "cost_price": 519.739990234375,
     "current_price": 519.739990234375,
     "date": "2026-06-24",
-    "profit_loss": -0.2811782996848251,
-    "return_pct": -0.00021157133159129053,
-    "shares": 2.556506804683499,
+    "profit_loss": 0.0,
+    "return_pct": 0.0,
+    "shares": 2.3674337613411907,
     "source": "ai_analyst",
     "ticker": "AMD",
-    "value": 1328.7188217003152
+    "value": 1230.45
   },
   {
-    "cost_price": 337.7799987792969,
+    "cost_price": 342.55999755859375,
     "current_price": 342.55999755859375,
     "date": "2026-06-24",
-    "profit_loss": 13.164879153443962,
-    "return_pct": 0.014151219126565584,
-    "shares": 2.75415952206173,
+    "profit_loss": -1.1368683772161603e-13,
+    "return_pct": -1.3199217211080268e-16,
+    "shares": 2.514347869390894,
     "source": "ai_analyst",
     "ticker": "AXP",
-    "value": 943.4648791534439
+    "value": 861.3149999999999
   },
   {
-    "cost_price": 57.90999984741212,
+    "cost_price": 57.72999954223633,
     "current_price": 57.72999954223633,
     "date": "2026-06-24",
-    "profit_loss": -2.0241408917696617,
-    "return_pct": -0.0031082767337259286,
-    "shares": 11.245208111135943,
+    "profit_loss": 0.0,
+    "return_pct": 0.0,
+    "shares": 10.443798800983748,
     "source": "ai_analyst",
     "ticker": "BAC",
-    "value": 649.1858591082303
+    "value": 602.9205000000001
   },
   {
-    "cost_price": 979.4500122070312,
+    "cost_price": 986.6799926757812,
     "current_price": 961.0900268554688,
     "date": "2026-06-24",
-    "profit_loss": -56.235596884188,
-    "return_pct": -0.018745198961396,
-    "shares": 3.062943450518713,
+    "profit_loss": -81.69659153154817,
+    "return_pct": -0.025935425883031164,
+    "shares": 3.1925244490440137,
     "source": "ai_analyst",
     "ticker": "COST",
-    "value": 2943.764403115812
+    "value": 3068.303408468452
   },
   {
-    "cost_price": 1094.43994140625,
+    "cost_price": 1076.9100341796875,
     "current_price": 1076.9100341796875,
     "date": "2026-06-24",
-    "profit_loss": -7.301410810390564,
-    "return_pct": -0.016017240017792297,
-    "shares": 0.416511662955466,
+    "profit_loss": 0.0,
+    "return_pct": 0.0,
+    "shares": 0.3919030713846797,
     "source": "ai_analyst",
     "ticker": "GS",
-    "value": 448.54558918960936
+    "value": 422.04434999999995
   },
   {
-    "cost_price": 324.45001220703125,
+    "cost_price": 342.8599853515625,
     "current_price": 342.8599853515625,
     "date": "2026-06-24",
-    "profit_loss": 18.105999379226716,
-    "return_pct": 0.05674209416513724,
-    "shares": 0.983488636136611,
+    "profit_loss": 0.0,
+    "return_pct": 0.0,
+    "shares": 0.8616667375082289,
     "source": "ai_analyst",
     "ticker": "HD",
-    "value": 337.19889937922665
+    "value": 295.431045
   },
   {
-    "cost_price": 132.27999877929688,
+    "cost_price": 131.64999389648438,
     "current_price": 131.64999389648438,
     "date": "2026-06-24",
-    "profit_loss": -1.0638120717278525,
-    "return_pct": -0.004762661692064567,
-    "shares": 1.688577502730963,
+    "profit_loss": 0.0,
+    "return_pct": 0.0,
+    "shares": 1.5708449759793153,
     "source": "ai_analyst",
     "ticker": "INTC",
-    "value": 222.3012179282721
+    "value": 206.8017315
   },
   {
-    "cost_price": 235.66000366210935,
+    "cost_price": 235.17999267578125,
     "current_price": 241.0,
     "date": "2026-06-24",
-    "profit_loss": 47.5854711673901,
-    "return_pct": 0.022659748174947664,
-    "shares": 8.911143033889585,
+    "profit_loss": 54.56721043270909,
+    "return_pct": 0.024747034209845392,
+    "shares": 9.375797553662693,
     "source": "ai_analyst",
     "ticker": "JNJ",
-    "value": 2147.58547116739
+    "value": 2259.567210432709
   },
   {
-    "cost_price": 226.02999877929688,
+    "cost_price": 219.8600006103516,
     "current_price": 219.86000061035156,
     "date": "2026-06-24",
-    "profit_loss": -4.268076288477403,
-    "return_pct": -0.027297253471960246,
-    "shares": 0.6917467674397975,
+    "profit_loss": 0.0,
+    "return_pct": 0.0,
+    "shares": 0.6584245049037095,
     "source": "ai_analyst",
     "ticker": "MS",
-    "value": 152.08744471152258
+    "value": 144.76121205
   },
   {
-    "cost_price": 200.0399932861328,
+    "cost_price": 199.0,
     "current_price": 199.0,
     "date": "2026-06-24",
-    "profit_loss": -0.5690166380881863,
-    "return_pct": -0.005198926819824621,
-    "shares": 0.547134914883979,
+    "profit_loss": 0.0,
+    "return_pct": 0.0,
+    "shares": 0.5092102936432161,
     "source": "ai_analyst",
     "ticker": "NVDA",
-    "value": 108.87984806191183
+    "value": 101.332848435
   },
   {
-    "cost_price": 381.6099853515625,
+    "cost_price": 375.5299987792969,
     "current_price": 375.5299987792969,
     "date": "2026-06-24",
-    "profit_loss": -1.2206529107954651,
-    "return_pct": -0.01593246195238926,
-    "shares": 0.20076572477373283,
+    "profit_loss": 0.0,
+    "return_pct": 0.0,
+    "shares": 0.1888876897586765,
     "source": "ai_analyst",
     "ticker": "TSLA",
-    "value": 75.39355237920455
+    "value": 70.9329939045
   },
   {
-    "cost_price": 411.0400085449219,
+    "cost_price": 407.6499938964844,
     "current_price": 405.79998779296875,
     "date": "2026-06-24",
-    "profit_loss": -18.73985584186562,
-    "return_pct": -0.012748201252969809,
-    "shares": 3.576294203583217,
+    "profit_loss": -7.004745402992739,
+    "return_pct": -0.004538221835434233,
+    "shares": 3.7863363746104826,
     "source": "ai_analyst",
     "ticker": "UNH",
-    "value": 1451.2601441581344
+    "value": 1536.4952545970073
   },
   {
     "cost_price": 644.5689058050006,
@@ -1507,136 +1375,136 @@
     "value": 10702.354884248462
   },
   {
-    "cost_price": 519.8499755859375,
+    "cost_price": 519.739990234375,
     "current_price": 532.5700073242188,
     "date": "2026-06-25",
-    "profit_loss": 32.51884769470621,
-    "return_pct": 0.024468658912495268,
-    "shares": 2.556506804683499,
+    "profit_loss": 30.37421561708061,
+    "return_pct": 0.024685452978244225,
+    "shares": 2.3674337613411907,
     "source": "ai_analyst",
     "ticker": "AMD",
-    "value": 1361.5188476947062
+    "value": 1260.8242156170807
   },
   {
-    "cost_price": 337.7799987792969,
+    "cost_price": 342.55999755859375,
     "current_price": 342.4599914550781,
     "date": "2026-06-25",
-    "profit_loss": 12.889446391182105,
-    "return_pct": 0.013855150372118786,
-    "shares": 2.75415952206173,
+    "profit_loss": -0.2514501333006365,
+    "return_pct": -0.0002919374831515026,
+    "shares": 2.514347869390894,
     "source": "ai_analyst",
     "ticker": "AXP",
-    "value": 943.1894463911821
+    "value": 861.0635498666994
   },
   {
-    "cost_price": 57.90999984741212,
+    "cost_price": 57.72999954223633,
     "current_price": 58.189998626708984,
     "date": "2026-06-25",
-    "profit_loss": 3.1486445440573334,
-    "return_pct": 0.004835067864525013,
-    "shares": 11.245208111135943,
+    "profit_loss": 4.804137886869171,
+    "return_pct": 0.007968111694442585,
+    "shares": 10.443798800983748,
     "source": "ai_analyst",
     "ticker": "BAC",
-    "value": 654.3586445440573
+    "value": 607.7246378868692
   },
   {
-    "cost_price": 979.4500122070312,
+    "cost_price": 986.6799926757812,
     "current_price": 942.239990234375,
     "date": "2026-06-25",
-    "profit_loss": -113.97219309480488,
-    "return_pct": -0.037990731031601624,
-    "shares": 3.062943450518713,
+    "profit_loss": -141.8757943097653,
+    "return_pct": -0.045039934701512796,
+    "shares": 3.1925244490440137,
     "source": "ai_analyst",
     "ticker": "COST",
-    "value": 2886.027806905195
+    "value": 3008.1242056902347
   },
   {
-    "cost_price": 1094.43994140625,
+    "cost_price": 1076.9100341796875,
     "current_price": 1065.0899658203125,
     "date": "2026-06-25",
-    "profit_loss": -12.224607139001137,
-    "return_pct": -0.026817346914647103,
-    "shares": 0.416511662955466,
+    "profit_loss": -4.632321094015936,
+    "return_pct": -0.010975910692835803,
+    "shares": 0.3919030713846797,
     "source": "ai_analyst",
     "ticker": "GS",
-    "value": 443.6223928609988
+    "value": 417.412028905984
   },
   {
-    "cost_price": 324.45001220703125,
+    "cost_price": 342.8599853515625,
     "current_price": 345.0,
     "date": "2026-06-25",
-    "profit_loss": 20.21067946713083,
-    "return_pct": 0.06333791653506185,
-    "shares": 0.983488636136611,
+    "profit_loss": 1.8439794403389556,
+    "return_pct": 0.00624165764413471,
+    "shares": 0.8616667375082289,
     "source": "ai_analyst",
     "ticker": "HD",
-    "value": 339.30357946713076
+    "value": 297.27502444033894
   },
   {
-    "cost_price": 132.27999877929688,
+    "cost_price": 131.64999389648438,
     "current_price": 132.8699951171875,
     "date": "2026-06-25",
-    "profit_loss": 0.9962545428557519,
-    "return_pct": 0.004460208219951673,
-    "shares": 1.688577502730963,
+    "profit_loss": 1.9164327882301393,
+    "return_pct": 0.009267005524226664,
+    "shares": 1.5708449759793153,
     "source": "ai_analyst",
     "ticker": "INTC",
-    "value": 224.3612845428557
+    "value": 208.71816428823013
   },
   {
-    "cost_price": 235.66000366210935,
+    "cost_price": 235.17999267578125,
     "current_price": 244.8800048828125,
     "date": "2026-06-25",
-    "profit_loss": 82.16074965032249,
-    "return_pct": 0.039124166500153566,
-    "shares": 8.911143033889585,
+    "profit_loss": 90.94535072118197,
+    "return_pct": 0.041245057016409056,
+    "shares": 9.375797553662693,
     "source": "ai_analyst",
     "ticker": "JNJ",
-    "value": 2182.1607496503225
+    "value": 2295.945350721182
   },
   {
-    "cost_price": 226.02999877929688,
+    "cost_price": 219.8600006103516,
     "current_price": 221.0399932861328,
     "date": "2026-06-25",
-    "profit_loss": -3.451820169403078,
-    "return_pct": -0.022076739902283836,
-    "shares": 0.6917467674397975,
+    "profit_loss": 0.7769360933412486,
+    "return_pct": 0.005367018432208882,
+    "shares": 0.6584245049037095,
     "source": "ai_analyst",
     "ticker": "MS",
-    "value": 152.9037008305969
+    "value": 145.53814814334126
   },
   {
-    "cost_price": 200.0399932861328,
+    "cost_price": 199.0,
     "current_price": 195.74000549316406,
     "date": "2026-06-25",
-    "profit_loss": -2.3526734551081034,
-    "return_pct": -0.02149564055832644,
-    "shares": 0.547134914883979,
+    "profit_loss": -1.6600227601011994,
+    "return_pct": -0.016381881943899185,
+    "shares": 0.5092102936432161,
     "source": "ai_analyst",
     "ticker": "NVDA",
-    "value": 107.09619124489191
+    "value": 99.6728256748988
   },
   {
-    "cost_price": 381.6099853515625,
+    "cost_price": 375.5299987792969,
     "current_price": 375.1199951171875,
     "date": "2026-06-25",
-    "profit_loss": -1.3029675931787494,
-    "return_pct": -0.017006866915172687,
-    "shares": 0.20076572477373283,
+    "profit_loss": -0.07744464452844113,
+    "return_pct": -0.0010918000251435606,
+    "shares": 0.1888876897586765,
     "source": "ai_analyst",
     "ticker": "TSLA",
-    "value": 75.31123769682127
+    "value": 70.85554925997155
   },
   {
-    "cost_price": 411.0400085449219,
+    "cost_price": 407.6499938964844,
     "current_price": 415.5299987792969,
     "date": "2026-06-25",
-    "profit_loss": 16.057526049340595,
-    "return_pct": 0.010923487108394962,
-    "shares": 3.576294203583217,
+    "profit_loss": 29.836349119901115,
+    "return_pct": 0.019330320129511573,
+    "shares": 3.7863363746104826,
     "source": "ai_analyst",
     "ticker": "UNH",
-    "value": 1486.0575260493406
+    "value": 1573.3363491199011
   },
   {
     "cost_price": 644.5689058050006,
@@ -1793,136 +1661,136 @@
     "value": 10717.826585464432
   },
   {
-    "cost_price": 519.8499755859375,
+    "cost_price": 519.739990234375,
     "current_price": 521.5800170898438,
     "date": "2026-06-26",
-    "profit_loss": 4.422862877121361,
-    "return_pct": 0.00332796303771359,
-    "shares": 2.556506804683499,
+    "profit_loss": 4.356141699411182,
+    "return_pct": 0.0035402833917763275,
+    "shares": 2.3674337613411907,
     "source": "ai_analyst",
     "ticker": "AMD",
-    "value": 1333.4228628771214
+    "value": 1234.8061416994112
   },
   {
-    "cost_price": 337.7799987792969,
+    "cost_price": 342.55999755859375,
     "current_price": 340.3599853515625,
     "date": "2026-06-26",
-    "profit_loss": 7.105694584796765,
-    "return_pct": 0.007638067918732415,
-    "shares": 2.75415952206173,
+    "profit_loss": -5.531596005382994,
+    "return_pct": -0.0064222682820837835,
+    "shares": 2.514347869390894,
     "source": "ai_analyst",
     "ticker": "AXP",
-    "value": 937.4056945847967
+    "value": 855.7834039946171
   },
   {
-    "cost_price": 57.90999984741212,
+    "cost_price": 57.72999954223633,
     "current_price": 57.880001068115234,
     "date": "2026-06-26",
-    "profit_loss": -0.337342516273452,
-    "return_pct": -0.0005180241646680058,
-    "shares": 11.245208111135943,
+    "profit_loss": 1.5665857561198209,
+    "return_pct": 0.0025983288943066635,
+    "shares": 10.443798800983748,
     "source": "ai_analyst",
     "ticker": "BAC",
-    "value": 650.8726574837265
+    "value": 604.4870857561199
   },
   {
-    "cost_price": 979.4500122070312,
+    "cost_price": 986.6799926757812,
     "current_price": 952.5399780273438,
     "date": "2026-06-26",
-    "profit_loss": -82.42391294390836,
-    "return_pct": -0.027474637647969456,
-    "shares": 3.062943450518713,
+    "profit_loss": -108.99283145585741,
+    "return_pct": -0.03460089887487537,
+    "shares": 3.1925244490440137,
     "source": "ai_analyst",
     "ticker": "COST",
-    "value": 2917.5760870560916
+    "value": 3041.0071685441426
   },
   {
-    "cost_price": 1094.43994140625,
+    "cost_price": 1076.9100341796875,
     "current_price": 1019.6099853515625,
     "date": "2026-06-26",
-    "profit_loss": -31.167549435222327,
-    "return_pct": -0.06837282999607835,
-    "shares": 0.416511662955466,
+    "profit_loss": -22.456065126234307,
+    "return_pct": -0.05320783260392968,
+    "shares": 0.3919030713846797,
     "source": "ai_analyst",
     "ticker": "GS",
-    "value": 424.6794505647776
+    "value": 399.58828487376564
   },
   {
-    "cost_price": 324.45001220703125,
+    "cost_price": 342.8599853515625,
     "current_price": 348.8599853515625,
     "date": "2026-06-26",
-    "profit_loss": 24.006931196046366,
-    "return_pct": 0.07523492749618174,
-    "shares": 0.983488636136611,
+    "profit_loss": 5.170000425049409,
+    "return_pct": 0.01749985491555029,
+    "shares": 0.8616667375082289,
     "source": "ai_analyst",
     "ticker": "HD",
-    "value": 343.0998311960463
+    "value": 300.6010454250494
   },
   {
-    "cost_price": 132.27999877929688,
+    "cost_price": 131.64999389648438,
     "current_price": 128.32000732421875,
     "date": "2026-06-26",
-    "profit_loss": -6.686752482051787,
-    "return_pct": -0.029936434015887754,
-    "shares": 1.688577502730963,
+    "profit_loss": -5.2308926771220285,
+    "return_pct": -0.025294240232809795,
+    "shares": 1.5708449759793153,
     "source": "ai_analyst",
     "ticker": "INTC",
-    "value": 216.67827751794817
+    "value": 201.57083882287796
   },
   {
-    "cost_price": 235.66000366210935,
+    "cost_price": 235.17999267578125,
     "current_price": 254.66000366210938,
     "date": "2026-06-26",
-    "profit_loss": 169.31171764390228,
-    "return_pct": 0.08062462744947728,
-    "shares": 8.911143033889585,
+    "profit_loss": 182.64063935093736,
+    "return_pct": 0.08283022192786275,
+    "shares": 9.375797553662693,
     "source": "ai_analyst",
     "ticker": "JNJ",
-    "value": 2269.3117176439023
+    "value": 2387.6406393509374
   },
   {
-    "cost_price": 226.02999877929688,
+    "cost_price": 219.8600006103516,
     "current_price": 212.02999877929688,
     "date": "2026-06-26",
-    "profit_loss": -9.684454744157165,
-    "return_pct": -0.06193868104060851,
-    "shares": 0.6917467674397975,
+    "profit_loss": -5.155465079007342,
+    "return_pct": -0.03561358050267404,
+    "shares": 0.6584245049037095,
     "source": "ai_analyst",
     "ticker": "MS",
-    "value": 146.67106625584282
+    "value": 139.60574697099267
   },
   {
-    "cost_price": 200.0399932861328,
+    "cost_price": 199.0,
     "current_price": 192.52999877929688,
     "date": "2026-06-26",
-    "profit_loss": -4.108980205276836,
-    "return_pct": -0.037542465301395087,
-    "shares": 0.547134914883979,
+    "profit_loss": -3.2945912214661917,
+    "return_pct": -0.03251256894825678,
+    "shares": 0.5092102936432161,
     "source": "ai_analyst",
     "ticker": "NVDA",
-    "value": 105.33988449472318
+    "value": 98.03825721353381
   },
   {
-    "cost_price": 381.6099853515625,
+    "cost_price": 375.5299987792969,
     "current_price": 379.7099914550781,
     "date": "2026-06-26",
-    "profit_loss": -0.38145365169334866,
-    "return_pct": -0.004978889361959321,
-    "shares": 0.20076572477373283,
+    "profit_loss": 0.7895491597365094,
+    "return_pct": 0.011130915477774868,
+    "shares": 0.1888876897586765,
     "source": "ai_analyst",
     "ticker": "TSLA",
-    "value": 76.23275163830667
+    "value": 71.7225430642365
   },
   {
-    "cost_price": 411.0400085449219,
+    "cost_price": 407.6499938964844,
     "current_price": 427.8900146484375,
     "date": "2026-06-26",
-    "profit_loss": 60.260579158344854,
-    "return_pct": 0.040993591264180174,
-    "shares": 3.576294203583217,
+    "profit_loss": 76.63552679599115,
+    "return_pct": 0.049650487072232685,
+    "shares": 3.7863363746104826,
     "source": "ai_analyst",
     "ticker": "UNH",
-    "value": 1530.2605791583449
+    "value": 1620.1355267959912
   },
   {
     "cost_price": 644.5689058050006,
