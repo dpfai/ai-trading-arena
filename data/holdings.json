@@ -1233,14 +1233,14 @@
   },
   {
     "cost_price": 751.7859125063712,
-    "current_price": NaN,
+    "current_price": null,
     "date": "2026-06-26",
-    "profit_loss": NaN,
-    "return_pct": NaN,
+    "profit_loss": null,
+    "return_pct": null,
     "shares": 14.631825120701205,
     "source": "spy",
     "ticker": "SPY",
-    "value": NaN
+    "value": null
   },
   {
     "cost_price": 737.3465541057878,

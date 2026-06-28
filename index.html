@@ -9,6 +9,24 @@
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f0f1a; --card: #16213e; --text: #e0e0e0; --muted: #8892b0; --border: #233;
+      --quant-ai: #4ecdc4; --loss: #ffa502;
+    }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; }
+    .nav-link { color: #c0cad8 !important; transition: color .2s; }
+    .nav-link:hover { color: #ffffff !important; }
+    .nav-link.active { color: var(--quant-ai) !important; }
+    .badge { padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+    .badge-buy { background: rgba(78,205,196,.15); color: var(--quant-ai); }
+    .badge-sell { background: rgba(255,165,2,.15); color: var(--loss); }
+    .badge-hold { background: rgba(136,146,176,.15); color: var(--muted); }
+    .chart-container { position: relative; height: 400px; }
+    .glow { text-shadow: 0 0 28px rgba(78,205,196,.22); }
+    @media (max-width: 768px) { .chart-container { height: 300px; } }
+  </style>
   
 </head>
 <body class="min-h-screen">

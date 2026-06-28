@@ -434,11 +434,11 @@
   {
     "cash": 0.0,
     "date": "2026-06-26",
-    "positions_value": NaN,
-    "return_pct": NaN,
+    "positions_value": null,
+    "return_pct": null,
     "source": "spy",
     "total_cost": 11000.0,
-    "total_value": NaN
+    "total_value": null
   },
   {
     "cash": 3000.0,
